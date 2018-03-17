@@ -136,7 +136,7 @@
 <meta property="og:site_name" content="十四心">
 <meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-23T14:05:32.356Z">
+<meta property="og:updated_time" content="2018-03-17T15:53:03.646Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hello World">
 <meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
@@ -440,6 +440,37 @@
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>###clean<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">``` </span><br><span class="line">清除缓存文件 (db.json) 和已生成的静态文件 (public)。</span><br><span class="line"></span><br><span class="line">在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###list</span></span><br><span class="line">``` bash</span><br><span class="line">$ hexo list &lt;<span class="built_in">type</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>列出网站资料。</p>
+<p>###version</p>
+<pre><code class="bash">$ hexo version
+</code></pre>
+<p>显示 Hexo 版本。</p>
+<p>##选项</p>
+<p>###安全模式</p>
+<pre><code class="bash">$ hexo --safe
+</code></pre>
+<p>在安全模式下，不会载入插件和脚本。当您在安装新插件遭遇问题时，可以尝试以安全模式重新执行。</p>
+<p>###调试模式</p>
+<pre><code class="bash">$ hexo --debug
+</code></pre>
+<p>在终端中显示调试信息并记录到 debug.log。当您碰到问题时，可以尝试用调试模式重新执行一次，并 提交调试信息到 GitHub。</p>
+<p>###简洁模式</p>
+<pre><code class="bash">$ hexo --silent
+</code></pre>
+<p>隐藏终端信息。</p>
+<p>###自定义配置文件的路径</p>
+<pre><code class="bash">$ hexo --config custom.yml
+</code></pre>
+<p>自定义配置文件的路径，执行后将不再使用 _config.yml。</p>
+<p>###显示草稿</p>
+<pre><code class="bash">$ hexo --draft
+</code></pre>
+<p>显示 source/_drafts 文件夹中的草稿文章。</p>
+<p>###自定义 CWD</p>
+<pre><code class="bash">$ hexo --cwd /path/to/cwd
+</code></pre>
+<p>自定义当前工作目录（Current working directory）的路径。</p>
 
       
     </div>
