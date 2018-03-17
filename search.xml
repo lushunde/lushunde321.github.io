@@ -3,9 +3,56 @@
   
     
     <entry>
-      <title><![CDATA[github pages  域名绑定（2）]]></title>
+      <title><![CDATA[Next主题添加酷炫特效]]></title>
+      <url>/2018/03/18/Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E9%85%B7%E7%82%AB%E7%89%B9%E6%95%88/</url>
+      <content type="html"><![CDATA[<h2 id="在右上角或者左上角实现fork-me-on-github"><a href="#在右上角或者左上角实现fork-me-on-github" class="headerlink" title="在右上角或者左上角实现fork me on github"></a>在右上角或者左上角实现fork me on github</h2><h3 id="实现效果图"><a href="#实现效果图" class="headerlink" title="实现效果图"></a>实现效果图</h3><p><img src="http://githubimg.lushunde.com/2018-03-18_024224.jpg" alt="展示效果"></p>
+<h3 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h3><p>点击 <a href="http://tholman.com/github-corners/" target="_blank" rel="noopener">图标地址</a> 或者 <a href="https://blog.github.com/2008-12-19-github-ribbons/" target="_blank" rel="noopener">字体地址</a>  挑选自己喜欢的样式，并复制代码。 例如，我是复制如下代码：<br><img src="http://githubimg.lushunde.com/2018-03-18_022708.jpg" alt="图标"><br><img src="http://githubimg.lushunde.com/2018-03-18_022814.jpg" alt="图标"><br>然后粘贴刚才复制的代码到themes/next/layout/_layout.swig文件中放在 &lt; head &gt; 中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt; </span><br><span class="line">  &#123;% include <span class="string">'_partials/head.swig'</span> %&#125;</span><br><span class="line">  &lt;title&gt;&#123;% block title %&#125;&#123;% endblock %&#125;&lt;/title&gt;</span><br><span class="line">  &#123;% include <span class="string">'_third-party/analytics/index.swig'</span> %&#125;</span><br><span class="line"> &lt;a href=<span class="string">"https://github.com/lushunde321"</span>&gt;&lt;img style=<span class="string">"position: absolute; top: 0; left: 0; border: 0;"</span> src=<span class="string">"https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"</span> alt=<span class="string">"Fork me on GitHub"</span>&gt;&lt;/a&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure></p>
+<p>并把href改为你的github地址 </p>
+<h2 id="添加RSS"><a href="#添加RSS" class="headerlink" title="添加RSS"></a>添加RSS</h2><h2 id="添加动态背景"><a href="#添加动态背景" class="headerlink" title="添加动态背景"></a>添加动态背景</h2><h2 id="实现点击出现桃心效果"><a href="#实现点击出现桃心效果" class="headerlink" title="实现点击出现桃心效果"></a>实现点击出现桃心效果</h2><h2 id="修改文章内链接文本样式"><a href="#修改文章内链接文本样式" class="headerlink" title="修改文章内链接文本样式"></a>修改文章内链接文本样式</h2><h2 id="修改文章底部的那个带-号的标签"><a href="#修改文章底部的那个带-号的标签" class="headerlink" title="修改文章底部的那个带#号的标签"></a>修改文章底部的那个带#号的标签</h2><h2 id="在每篇文章末尾统一添加“本文结束”标记"><a href="#在每篇文章末尾统一添加“本文结束”标记" class="headerlink" title="在每篇文章末尾统一添加“本文结束”标记"></a>在每篇文章末尾统一添加“本文结束”标记</h2><h2 id="修改作者头像并旋转"><a href="#修改作者头像并旋转" class="headerlink" title="修改作者头像并旋转"></a>修改作者头像并旋转</h2><h2 id="博文压缩"><a href="#博文压缩" class="headerlink" title="博文压缩"></a>博文压缩</h2><h2 id="修改“代码块自定义样式"><a href="#修改“代码块自定义样式" class="headerlink" title="修改“代码块自定义样式"></a>修改“代码块自定义样式</h2><h2 id="侧边栏社交小图标设置"><a href="#侧边栏社交小图标设置" class="headerlink" title="侧边栏社交小图标设置"></a>侧边栏社交小图标设置</h2><h2 id="主页文章添加阴影效果"><a href="#主页文章添加阴影效果" class="headerlink" title="主页文章添加阴影效果"></a>主页文章添加阴影效果</h2><h2 id="在网站底部加上访问量"><a href="#在网站底部加上访问量" class="headerlink" title="在网站底部加上访问量"></a>在网站底部加上访问量</h2><h2 id="添加热度"><a href="#添加热度" class="headerlink" title="添加热度"></a>添加热度</h2><h2 id="网站底部字数统计"><a href="#网站底部字数统计" class="headerlink" title="网站底部字数统计"></a>网站底部字数统计</h2><h2 id="添加-README-md-文件"><a href="#添加-README-md-文件" class="headerlink" title="添加 README.md 文件"></a>添加 README.md 文件</h2><h2 id="设置网站的图标Favicon"><a href="#设置网站的图标Favicon" class="headerlink" title="设置网站的图标Favicon"></a>设置网站的图标Favicon</h2><h2 id="实现统计功能"><a href="#实现统计功能" class="headerlink" title="实现统计功能"></a>实现统计功能</h2><h2 id="添加顶部加载条"><a href="#添加顶部加载条" class="headerlink" title="添加顶部加载条"></a>添加顶部加载条</h2><h2 id="在文章底部增加版权信息"><a href="#在文章底部增加版权信息" class="headerlink" title="在文章底部增加版权信息"></a>在文章底部增加版权信息</h2><h2 id="添加网易云跟帖-跟帖关闭，已失效，改为来必力"><a href="#添加网易云跟帖-跟帖关闭，已失效，改为来必力" class="headerlink" title="添加网易云跟帖(跟帖关闭，已失效，改为来必力)"></a>添加网易云跟帖(跟帖关闭，已失效，改为来必力)</h2><h2 id="隐藏网页底部powered-By-Hexo-强力驱动"><a href="#隐藏网页底部powered-By-Hexo-强力驱动" class="headerlink" title="隐藏网页底部powered By Hexo / 强力驱动"></a>隐藏网页底部powered By Hexo / 强力驱动</h2><h2 id="修改网页底部的桃心"><a href="#修改网页底部的桃心" class="headerlink" title="修改网页底部的桃心"></a>修改网页底部的桃心</h2><h2 id="文章加密访问"><a href="#文章加密访问" class="headerlink" title="文章加密访问"></a>文章加密访问</h2><h2 id="添加jiathis分享"><a href="#添加jiathis分享" class="headerlink" title="添加jiathis分享"></a>添加jiathis分享</h2><h2 id="博文置顶"><a href="#博文置顶" class="headerlink" title="博文置顶"></a>博文置顶</h2><h2 id="修改字体大小"><a href="#修改字体大小" class="headerlink" title="修改字体大小"></a>修改字体大小</h2><h2 id="修改打赏字体不闪动"><a href="#修改打赏字体不闪动" class="headerlink" title="修改打赏字体不闪动"></a>修改打赏字体不闪动</h2><h2 id="自定义鼠标样式"><a href="#自定义鼠标样式" class="headerlink" title="自定义鼠标样式"></a>自定义鼠标样式</h2><h2 id="为博客加上萌萌的宠物"><a href="#为博客加上萌萌的宠物" class="headerlink" title="为博客加上萌萌的宠物"></a>为博客加上萌萌的宠物</h2><h2 id="DaoVoice-在线联系"><a href="#DaoVoice-在线联系" class="headerlink" title="DaoVoice 在线联系"></a>DaoVoice 在线联系</h2><h2 id="点击爆炸效果"><a href="#点击爆炸效果" class="headerlink" title="点击爆炸效果"></a>点击爆炸效果</h2>]]></content>
+      
+        <categories>
+            
+            <category> github </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Next </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hexo 下载安装Next主题（三）]]></title>
+      <url>/2018/03/18/Hexo-%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85Next%E4%B8%BB%E9%A2%98/</url>
+      <content type="html"><![CDATA[<h1 id="Next主题文档地址：官方文档"><a href="#Next主题文档地址：官方文档" class="headerlink" title="Next主题文档地址：官方文档"></a>Next主题文档地址：<a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">官方文档</a></h1><ul>
+<li>官方详细，此处略，可以查看官方文档 </li>
+</ul>
+<h2 id="安装-NexT"><a href="#安装-NexT" class="headerlink" title="安装 NexT"></a>安装 NexT</h2><h3 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h3><h3 id="下载-NexT-版本"><a href="#下载-NexT-版本" class="headerlink" title="下载 NexT 版本"></a>下载 NexT 版本</h3><h3 id="启用主题"><a href="#启用主题" class="headerlink" title="启用主题"></a>启用主题</h3><h3 id="启用-NexT-主题"><a href="#启用-NexT-主题" class="headerlink" title="启用 NexT 主题"></a>启用 NexT 主题</h3><h3 id="验证主题"><a href="#验证主题" class="headerlink" title="验证主题"></a>验证主题</h3><h2 id="主题设定"><a href="#主题设定" class="headerlink" title="主题设定"></a>主题设定</h2><h3 id="选择-Scheme"><a href="#选择-Scheme" class="headerlink" title="选择 Scheme"></a>选择 Scheme</h3><h3 id="设置-语言"><a href="#设置-语言" class="headerlink" title="设置 语言"></a>设置 语言</h3><h3 id="设置-菜单"><a href="#设置-菜单" class="headerlink" title="设置 菜单"></a>设置 菜单</h3><h3 id="设置-侧栏"><a href="#设置-侧栏" class="headerlink" title="设置 侧栏"></a>设置 侧栏</h3><h3 id="设置-头像"><a href="#设置-头像" class="headerlink" title="设置 头像"></a>设置 头像</h3><h3 id="站点描述"><a href="#站点描述" class="headerlink" title="站点描述"></a>站点描述</h3>]]></content>
+      
+        <categories>
+            
+            <category> github </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Next </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Github Pages  域名绑定（二）]]></title>
       <url>/2018/03/17/github-pages-%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A/</url>
-      <content type="html"><![CDATA[<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ul>
+      <content type="html"><![CDATA[<h1 id="Next主题文档地址：官方文档"><a href="#Next主题文档地址：官方文档" class="headerlink" title="Next主题文档地址：官方文档"></a>Next主题文档地址：<a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">官方文档</a></h1><hr>
+<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ul>
 <li>lushunde321.github.io 已经可以正常显示 博客内容</li>
 <li>已经有一个域名 我的以 万网 lushunde.com 为例    <pre><code>注：cn域名需要备案，国际域名可以不用备案。备案比较麻烦，大约需要40天。
 </code></pre></li>
@@ -30,9 +77,10 @@
     </entry>
     
     <entry>
-      <title><![CDATA[github+hexo搭建自己的博客（一）]]></title>
+      <title><![CDATA[Github+hexo搭建自己的博客（一）]]></title>
       <url>/2018/01/24/github-hexo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/</url>
-      <content type="html"><![CDATA[<h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><h3 id="1-github官网申请自己的账户"><a href="#1-github官网申请自己的账户" class="headerlink" title="1.github官网申请自己的账户"></a>1.github官网申请自己的账户</h3><p> :    注意:只能用户名称作为github.io博客的二级域名，我的用户名称 lushunde321，所以我的github博客网址是：lushunde321.github.io</p>
+      <content type="html"><![CDATA[<h1 id="Next主题文档地址：官方文档"><a href="#Next主题文档地址：官方文档" class="headerlink" title="Next主题文档地址：官方文档"></a>Next主题文档地址：<a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">官方文档</a></h1><hr>
+<h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><h3 id="1-github官网申请自己的账户"><a href="#1-github官网申请自己的账户" class="headerlink" title="1.github官网申请自己的账户"></a>1.github官网申请自己的账户</h3><p> :    注意:只能用户名称作为github.io博客的二级域名，我的用户名称 lushunde321，所以我的github博客网址是：lushunde321.github.io</p>
 <h3 id="2-nodejs-本地安装完成，下载地址：https-nodejs-org-dist-v8-9-4-node-v8-9-4-x64-msi"><a href="#2-nodejs-本地安装完成，下载地址：https-nodejs-org-dist-v8-9-4-node-v8-9-4-x64-msi" class="headerlink" title="2.nodejs 本地安装完成，下载地址：https://nodejs.org/dist/v8.9.4/node-v8.9.4-x64.msi"></a>2.nodejs 本地安装完成，下载地址：<a href="https://nodejs.org/dist/v8.9.4/node-v8.9.4-x64.msi" target="_blank" rel="noopener">https://nodejs.org/dist/v8.9.4/node-v8.9.4-x64.msi</a></h3><p> :    安装时点击下一步，不用选择其他配置即可。用户根据自己需要进行选择</p>
 <h3 id="3-安装Git-下载地址：https-pan-baidu-com-s-1racDcfE"><a href="#3-安装Git-下载地址：https-pan-baidu-com-s-1racDcfE" class="headerlink" title="3.安装Git 下载地址：https://pan.baidu.com/s/1racDcfE"></a>3.安装Git 下载地址：<a href="https://pan.baidu.com/s/1racDcfE" target="_blank" rel="noopener">https://pan.baidu.com/s/1racDcfE</a></h3><p>: 安装时点击下一步，不用选择其他配置即可。也可以根据自己需求进行选择</p>
 <h3 id="4-剩下的所有操作全部在Git安装后右键的-Git-Bash-Here-中操作。"><a href="#4-剩下的所有操作全部在Git安装后右键的-Git-Bash-Here-中操作。" class="headerlink" title="4.剩下的所有操作全部在Git安装后右键的 Git Bash Here 中操作。"></a>4.剩下的所有操作全部在Git安装后右键的 Git Bash Here 中操作。</h3><p>: Git Bash 其实是liunx界面的cmd，可以直接使用git的命令。</p>
@@ -96,9 +144,10 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Hexo 的基础使用命令]]></title>
+      <title><![CDATA[Hexo 的基础使用命令（〇）]]></title>
       <url>/2018/01/20/hexo%20help/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+      <content type="html"><![CDATA[<h1 id="Hexo官方文档地址：官方文档"><a href="#Hexo官方文档地址：官方文档" class="headerlink" title="Hexo官方文档地址：官方文档"></a>Hexo官方文档地址：<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">官方文档</a></h1><hr>
+<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
