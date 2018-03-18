@@ -39,8 +39,27 @@
 <hr>
 <h2 id="14-在网站底部加上访问量"><a href="#14-在网站底部加上访问量" class="headerlink" title="14.在网站底部加上访问量"></a>14.在网站底部加上访问量</h2><hr>
 <h2 id="15-添加热度"><a href="#15-添加热度" class="headerlink" title="15.添加热度"></a>15.添加热度</h2><hr>
-<h2 id="16-网站底部字数统计"><a href="#16-网站底部字数统计" class="headerlink" title="16.网站底部字数统计"></a>16.网站底部字数统计</h2><hr>
-<h2 id="17-添加-README-md-文件"><a href="#17-添加-README-md-文件" class="headerlink" title="17.添加 README.md 文件"></a>17.添加 README.md 文件</h2><hr>
+<h2 id="16-网站字数统计-文章字数、阅读时间、全站底部字数统计"><a href="#16-网站字数统计-文章字数、阅读时间、全站底部字数统计" class="headerlink" title="16.网站字数统计 文章字数、阅读时间、全站底部字数统计"></a>16.网站字数统计 文章字数、阅读时间、全站底部字数统计</h2><h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h3><p>单篇文章统计效果<br><img src="http://githubimg.lushunde.com/2018-03-18_175012.jpg" alt=""><br>底部全站字数统计效果<br><img src="http://githubimg.lushunde.com/2018-03-18_175025.jpg" alt=""></p>
+<h3 id="配置文件插件开启"><a href="#配置文件插件开启" class="headerlink" title="配置文件插件开启"></a>配置文件插件开启</h3><p>NexT 主题默认已经集成了文章【字数统计】【阅读时长】统计功能，如果我们需要使用，只需要在主题配置文件 _config.yml 中打开 wordcount 统计功能即可。如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">post_wordcount:</span><br><span class="line">  item_text: <span class="literal">true</span></span><br><span class="line">  wordcount: <span class="literal">true</span>         <span class="comment"># 单篇文章 字数统计</span></span><br><span class="line">  min2read: <span class="literal">true</span>          <span class="comment"># 单篇文章 阅读时长</span></span><br><span class="line">  totalcount: <span class="literal">true</span>       <span class="comment"># 网站底部 字数统计</span></span><br><span class="line">  separated_meta: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装插件-hexo-wordcount-插件"><a href="#安装插件-hexo-wordcount-插件" class="headerlink" title="安装插件 hexo-wordcount 插件"></a>安装插件 hexo-wordcount 插件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i --save hexo-wordcount</span><br></pre></td></tr></table></figure>
+<h3 id="修改-themes-next-layout-macro-post-swig-中"><a href="#修改-themes-next-layout-macro-post-swig-中" class="headerlink" title="修改 themes\next\layout_macro\post.swig 中"></a>修改 themes\next\layout_macro\post.swig 中</h3><ul>
+<li><p>搜索  wordcount(post.content) 添加单位，单篇文章字数统计添加单位</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;span title=<span class="string">"&#123;&#123; __('post.wordcount') &#125;&#125;"</span>&gt;</span><br><span class="line">  &#123;&#123; wordcount(post.content) &#125;&#125; 字</span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>搜索 min2read(post.content)  添加单位，单篇文章阅读时间添加单位</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;span title=<span class="string">"&#123;&#123; __('post.min2read') &#125;&#125;"</span>&gt;</span><br><span class="line">  &#123;&#123; min2read(post.content) &#125;&#125; 分钟</span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="底部全站字数统计-修改-themes-next-layout-partials-footer-swig-中"><a href="#底部全站字数统计-修改-themes-next-layout-partials-footer-swig-中" class="headerlink" title="底部全站字数统计 修改 themes\next\layout_partials\footer.swig 中"></a>底部全站字数统计 修改 themes\next\layout_partials\footer.swig 中</h3><ul>
+<li>文章底部添加如下代码<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=<span class="string">"theme-info"</span>&gt;</span><br><span class="line">  &lt;div class=<span class="string">"with-love"</span>&gt;&lt;i class=<span class="string">"fa fa-file-word-o"</span>&gt;&lt;/i&gt;&lt;/div&gt;</span><br><span class="line">  &lt;span class=<span class="string">"post-count"</span>&gt;博客全站共&#123;&#123; totalcount(site) &#125;&#125;字&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="17-添加-README-md-文件"><a href="#17-添加-README-md-文件" class="headerlink" title="17.添加 README.md 文件"></a>17.添加 README.md 文件</h2><p>每个项目下一般都有一个 README.md 文件，但是使用 hexo 部署到仓库后，项目下是没有 README.md 文件的。</p>
+<p>在 Hexo 目录下的 source 根目录下添加一个 README.md 文件，修改站点配置文件 _config.yml，将 skip_render 参数的值设置为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">skip_render: README.md</span><br></pre></td></tr></table></figure></p>
+<p>保存退出即可。再次使用 hexo d 命令部署博客的时候就不会在渲染 README.md 这个文件了。</p>
+<hr>
 <h2 id="18-设置网站的图标Favicon"><a href="#18-设置网站的图标Favicon" class="headerlink" title="18.设置网站的图标Favicon"></a>18.设置网站的图标Favicon</h2><hr>
 <h2 id="19-实现统计功能"><a href="#19-实现统计功能" class="headerlink" title="19.实现统计功能"></a>19.实现统计功能</h2><hr>
 <h2 id="20-添加顶部加载条"><a href="#20-添加顶部加载条" class="headerlink" title="20.添加顶部加载条"></a>20.添加顶部加载条</h2><hr>
