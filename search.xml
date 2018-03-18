@@ -113,7 +113,7 @@
 </code></pre></li>
 </ul>
 <h2 id="项目添加CNAME文件-避免每次上传文件设置github的个人域名"><a href="#项目添加CNAME文件-避免每次上传文件设置github的个人域名" class="headerlink" title="项目添加CNAME文件(避免每次上传文件设置github的个人域名)"></a>项目添加CNAME文件(避免每次上传文件设置github的个人域名)</h2><p>不需要后缀，只需要名字CNAME即可，打开添加 自己的域名，我的使用二级域名  github.lushunde.com<br>文件放置位置  ..\Hexo\source 文件夹下<br><img src="http://githubimg.lushunde.com/2018-03-18_030528.jpg" alt="文件位置图片"></p>
-<h2 id="添加域名解析"><a href="#添加域名解析" class="headerlink" title="添加域名解析"></a>添加域名解析</h2><p> 登录到自己的域名供应商，我的万网<br>        解析域名 添加一条规则，CNAME规则，具体如下图：<br><img src="http://githubimg.lushunde.com/2018-01-23_001701.png" alt="这里写图片描述"><br>    点击确定后大约1分钟后即可通过二级自定义域名访问github pages中的blog了。</p>
+<h2 id="添加域名解析"><a href="#添加域名解析" class="headerlink" title="添加域名解析"></a>添加域名解析</h2><p> 登录到自己的域名供应商，我的万网<br>        解析域名 添加一条规则，CNAME规则，具体如下图：<br><img src="http://githubimg.lushunde.com/2018-01-23_001701.png" alt="这里写图片描述"><br>点击确定后大约1分钟后即可通过二级自定义域名访问github pages中的blog了。</p>
 ]]></content>
       
         <categories>
