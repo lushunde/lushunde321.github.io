@@ -121,12 +121,23 @@
     <link href="http://github.lushunde.com/2018/03/18/Centos1708%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/"/>
     <id>http://github.lushunde.com/2018/03/18/Centos1708系统安装/</id>
     <published>2018-03-18T14:41:16.000Z</published>
-    <updated>2018-03-18T14:41:16.998Z</updated>
+    <updated>2018-03-19T15:46:20.110Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h2><h3 id="VMware12-pro-安装-centos7-4"><a href="#VMware12-pro-安装-centos7-4" class="headerlink" title="VMware12 pro  安装 centos7.4"></a>VMware12 pro  安装 centos7.4</h3><ul><li>下载centos7.4 地址：<a href="http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1708.iso" target="_blank" rel="noopener">http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1708.iso</a></li></ul><h3 id="1创建新的虚拟机"><a href="#1创建新的虚拟机" class="headerlink" title="1创建新的虚拟机"></a>1创建新的虚拟机</h3><h4 id="创建新的虚拟机-gt-典型推荐-gt-下一步-gt-稍后安装操作系统-gt-下一步"><a href="#创建新的虚拟机-gt-典型推荐-gt-下一步-gt-稍后安装操作系统-gt-下一步" class="headerlink" title="创建新的虚拟机-&gt;典型推荐-&gt;下一步-&gt;稍后安装操作系统-&gt;下一步"></a>创建新的虚拟机-&gt;典型推荐-&gt;下一步-&gt;稍后安装操作系统-&gt;下一步</h4><p><img src="http://githubimg.lushunde.com/img1.jpg" alt=""></p><h4 id="选择linux的centos-64位-gt-下一步"><a href="#选择linux的centos-64位-gt-下一步" class="headerlink" title="选择linux的centos 64位-&gt;下一步"></a>选择linux的centos 64位-&gt;下一步</h4><p><img src="http://githubimg.lushunde.com/img2.jpg" alt=""></p><h4 id="修改存储系统位置和名称"><a href="#修改存储系统位置和名称" class="headerlink" title="修改存储系统位置和名称"></a>修改存储系统位置和名称</h4><p><img src="http://githubimg.lushunde.com/img3.jpg" alt=""></p><h4 id="空的操作系统创建完成。"><a href="#空的操作系统创建完成。" class="headerlink" title="空的操作系统创建完成。"></a>空的操作系统创建完成。</h4><p><img src="http://githubimg.lushunde.com/img4.jpg" alt=""></p><h3 id="1-2修改虚拟机配置，添加iso位置"><a href="#1-2修改虚拟机配置，添加iso位置" class="headerlink" title="1.2修改虚拟机配置，添加iso位置"></a>1.2修改虚拟机配置，添加iso位置</h3><h4 id="编辑虚拟机位置"><a href="#编辑虚拟机位置" class="headerlink" title="编辑虚拟机位置"></a>编辑虚拟机位置</h4><p><img src="http://githubimg.lushunde.com/img5.jpg" alt=""></p><h3 id="2-安装centos7-4系统"><a href="#2-安装centos7-4系统" class="headerlink" title="2.安装centos7.4系统"></a>2.安装centos7.4系统</h3><h4 id="2-1-开启虚拟机进入安装，我们使用第二项先测试在安装系统"><a href="#2-1-开启虚拟机进入安装，我们使用第二项先测试在安装系统" class="headerlink" title="2.1 开启虚拟机进入安装，我们使用第二项先测试在安装系统"></a>2.1 开启虚拟机进入安装，我们使用第二项先测试在安装系统</h4><p><img src="http://githubimg.lushunde.com/img6.jpg" alt=""></p><h4 id="2-2-选择系统安装语言，一般选择Eeglish，省的以后有中文问题。选择continue"><a href="#2-2-选择系统安装语言，一般选择Eeglish，省的以后有中文问题。选择continue" class="headerlink" title="2.2 选择系统安装语言，一般选择Eeglish，省的以后有中文问题。选择continue"></a>2.2 选择系统安装语言，一般选择Eeglish，省的以后有中文问题。选择continue</h4><p><img src="http://githubimg.lushunde.com/img7.jpg" alt=""></p><h4 id="2-3-设置系统配置"><a href="#2-3-设置系统配置" class="headerlink" title="2.3 设置系统配置"></a>2.3 设置系统配置</h4><h5 id="2-3-1-设置时间"><a href="#2-3-1-设置时间" class="headerlink" title="2.3.1 设置时间"></a>2.3.1 设置时间</h5><p><img src="http://githubimg.lushunde.com/img8.jpg" alt=""></p><h5 id="2-3-2-设置磁盘"><a href="#2-3-2-设置磁盘" class="headerlink" title="2.3.2 设置磁盘"></a>2.3.2 设置磁盘</h5><p><img src="http://githubimg.lushunde.com/img9.jpg" alt=""></p><h5 id="2-3-3-总体显示"><a href="#2-3-3-总体显示" class="headerlink" title="2.3.3 总体显示"></a>2.3.3 总体显示</h5><p><img src="http://githubimg.lushunde.com/img10.jpg" alt=""></p><h3 id="2-4-开始安装"><a href="#2-4-开始安装" class="headerlink" title="2.4 开始安装"></a>2.4 开始安装</h3><p><img src="http://githubimg.lushunde.com/img11.jpg" alt=""></p><h4 id="2-4-1设置root密码，必选-密码简短会提醒，done两次就强制使用。"><a href="#2-4-1设置root密码，必选-密码简短会提醒，done两次就强制使用。" class="headerlink" title="2.4.1设置root密码，必选  密码简短会提醒，done两次就强制使用。"></a>2.4.1设置root密码，必选  密码简短会提醒，done两次就强制使用。</h4><p><img src="http://githubimg.lushunde.com/img12.jpg" alt=""></p><h4 id="2-4-2安装完成，reboot"><a href="#2-4-2安装完成，reboot" class="headerlink" title="2.4.2安装完成，reboot"></a>2.4.2安装完成，reboot</h4><p><img src="http://githubimg.lushunde.com/img13.jpg" alt=""></p><h4 id="2-5-启动系统"><a href="#2-5-启动系统" class="headerlink" title="2.5 启动系统"></a>2.5 启动系统</h4><p><img src="http://githubimg.lushunde.com/img14.jpg" alt=""></p>]]></content>
     
     <summary type="html">
     
+      
+      
+        &lt;h2 id=&quot;安装系统&quot;&gt;&lt;a href=&quot;#安装系统&quot; class=&quot;headerlink&quot; title=&quot;安装系统&quot;&gt;&lt;/a&gt;安装系统&lt;/h2&gt;&lt;h3 id=&quot;VMware12-pro-安装-centos7-4&quot;&gt;&lt;a href=&quot;#VMware12-pro-安装-cent
+      
+    
     </summary>
     
+      <category term="linux" scheme="http://github.lushunde.com/categories/linux/"/>
+    
+    
+      <category term="centos7.4" scheme="http://github.lushunde.com/tags/centos7-4/"/>
     
   </entry>
   
