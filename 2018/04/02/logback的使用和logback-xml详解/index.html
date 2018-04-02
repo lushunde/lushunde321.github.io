@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="logback," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="十四心" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="一、logback的介绍　　Logback是由log4j创始人设计的另一个开源日志组件,官方网站： http://logback.qos.ch。它当前分为下面下个**模块**：　　logback-core：其它两个模块的基础模块　　logback-classic：它是log4j的一个改良版本，同时它完整实现了slf4j API使你可以很方便地更换成其它日志系统如log4j或JDK14 Loggin">
+<meta name="keywords" content="logback">
+<meta property="og:type" content="article">
+<meta property="og:title" content="logback的使用和logback.xml详解">
+<meta property="og:url" content="http://github.lushunde.com/2018/04/02/logback的使用和logback-xml详解/index.html">
+<meta property="og:site_name" content="十四心">
+<meta property="og:description" content="一、logback的介绍　　Logback是由log4j创始人设计的另一个开源日志组件,官方网站： http://logback.qos.ch。它当前分为下面下个**模块**：　　logback-core：其它两个模块的基础模块　　logback-classic：它是log4j的一个改良版本，同时它完整实现了slf4j API使你可以很方便地更换成其它日志系统如log4j或JDK14 Loggin">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdn.net/20180402204701487?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hpYW95dTE5OTEwMzIx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2018-04-02T13:02:52.491Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="logback的使用和logback.xml详解">
+<meta name="twitter:description" content="一、logback的介绍　　Logback是由log4j创始人设计的另一个开源日志组件,官方网站： http://logback.qos.ch。它当前分为下面下个**模块**：　　logback-core：其它两个模块的基础模块　　logback-classic：它是log4j的一个改良版本，同时它完整实现了slf4j API使你可以很方便地更换成其它日志系统如log4j或JDK14 Loggin">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180402204701487?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hpYW95dTE5OTEwMzIx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://github.lushunde.com/2018/04/02/logback的使用和logback-xml详解/"/>
+
+
+
+
+
+  <title>logback的使用和logback.xml详解 | 十四心</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	 <a href="https://github.com/lushunde321"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">十四心</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">纸上得来终觉浅，绝知此事要躬行。    -小码</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+	
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.lushunde.com/2018/04/02/logback的使用和logback-xml详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鲁顺德">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://githubimg.lushunde.com/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十四心">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">logback的使用和logback.xml详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T20:52:46+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i> 本文阅读
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,547 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、logback的介绍"><a href="#一、logback的介绍" class="headerlink" title="一、logback的介绍"></a>一、logback的介绍</h3><p>　　Logback是由log4j创始人设计的另一个开源日志组件,官方网站： <a href="http://logback.qos.ch。它当前分为下面下个**模块**：" target="_blank" rel="noopener">http://logback.qos.ch。它当前分为下面下个**模块**：</a><br>　　<strong>logback-core</strong>：其它两个模块的基础模块<br>　　<strong>logback-classic</strong>：它是log4j的一个改良版本，同时它完整实现了slf4j API使你可以很方便地更换成其它日志系统如log4j或JDK14 Logging<br>　　<strong>logback-access</strong>：访问模块与Servlet容器集成提供通过Http来访问日志的功能</p>
+<h3 id="二、logback取代log4j的理由："><a href="#二、logback取代log4j的理由：" class="headerlink" title="二、logback取代log4j的理由："></a>二、logback取代log4j的理由：</h3><ol>
+<li>更快的实现：Logback的内核重写了，在一些关键执行路径上性能提升10倍以上。而且logback不仅性能提升了，初始化内存加载也更小了。</li>
+<li>非常充分的测试：Logback经过了几年，数不清小时的测试。Logback的测试完全不同级别的。</li>
+<li>Logback-classic非常自然实现了SLF4j：Logback-classic实现了SLF4j。在使用SLF4j中，你都感觉不到logback-classic。而且因为logback-classic非常自然地实现了slf4j ， 所 以切换到log4j或者其他，非常容易，只需要提供成另一个jar包就OK，根本不需要去动那些通过SLF4JAPI实现的代码。</li>
+<li>非常充分的文档 官方网站有两百多页的文档。</li>
+<li>自动重新加载配置文件，当配置文件修改了，Logback-classic能自动重新加载配置文件。扫描过程快且安全，它并不需要另外创建一个扫描线程。这个技术充分保证了应用程序能跑得很欢在JEE环境里面。</li>
+<li>Lilith是log事件的观察者，和log4j的chainsaw类似。而lilith还能处理大数量的log数据 。</li>
+<li>谨慎的模式和非常友好的恢复，在谨慎模式下，多个FileAppender实例跑在多个JVM下，能 够安全地写道同一个日志文件。RollingFileAppender会有些限制。Logback的FileAppender和它的子类包括 RollingFileAppender能够非常友好地从I/O异常中恢复。</li>
+<li>配置文件可以处理不同的情况，开发人员经常需要判断不同的Logback配置文件在不同的环境下（开发，测试，生产）。而这些配置文件仅仅只有一些很小的不同，可以通过,和来实现，这样一个配置文件就可以适应多个环境。</li>
+<li>Filters（过滤器）有些时候，需要诊断一个问题，需要打出日志。在log4j，只有降低日志级别，不过这样会打出大量的日志，会影响应用性能。在Logback，你可以继续 保持那个日志级别而除掉某种特殊情况，如alice这个用户登录，她的日志将打在DEBUG级别而其他用户可以继续打在WARN级别。要实现这个功能只需加4行XML配置。可以参考MDCFIlter 。</li>
+<li>SiftingAppender（一个非常多功能的Appender）：它可以用来分割日志文件根据任何一个给定的运行参数。如，SiftingAppender能够区别日志事件跟进用户的Session，然后每个用户会有一个日志文件。</li>
+<li>自动压缩已经打出来的log：RollingFileAppender在产生新文件的时候，会自动压缩已经打出来的日志文件。压缩是个异步过程，所以甚至对于大的日志文件，在压缩过程中应用不会受任何影响。</li>
+<li>堆栈树带有包版本：Logback在打出堆栈树日志时，会带上包的数据。</li>
+<li>自动去除旧的日志文件：通过设置TimeBasedRollingPolicy或者SizeAndTimeBasedFNATP的maxHistory属性，你可以控制已经产生日志文件的最大数量。如果设置maxHistory 12，那那些log文件超过12个月的都会被自动移除。<h3 id="三、logback的配置介绍"><a href="#三、logback的配置介绍" class="headerlink" title="三、logback的配置介绍"></a>三、logback的配置介绍</h3>　　<h4 id="Logger、appender及layout"><a href="#Logger、appender及layout" class="headerlink" title="Logger、appender及layout"></a>Logger、appender及layout</h4><strong>Logger</strong>作为日志的记录器，把它关联到应用的对应的context上后，主要用于存放日志对象，也可以定义日志类型、级别。<br><strong>Appender</strong>主要用于指定日志输出的目的地，目的地可以是控制台、文件、远程套接字服务器、 MySQL、PostreSQL、 Oracle和其他数据库、 JMS和远程UNIX Syslog守护进程等。<br><strong>Layout</strong> 负责把事件转换成字符串，格式化的日志信息的输出。<h4 id="logger-context"><a href="#logger-context" class="headerlink" title="logger context"></a>logger context</h4>各个logger 都被关联到一个 LoggerContext，LoggerContext负责制造logger，也负责以树结构排列各logger。其他所有logger也通过org.slf4j.LoggerFactory 类的静态方法getLogger取得。 getLogger方法以 logger名称为参数。用同一名字调用LoggerFactory.getLogger 方法所得到的永远都是同一个logger对象的引用。<h4 id="有效级别及级别的继承"><a href="#有效级别及级别的继承" class="headerlink" title="有效级别及级别的继承"></a>有效级别及级别的继承</h4><strong>Logger</strong> 可以被分配级别。级别包括：TRACE、DEBUG、INFO、WARN 和 ERROR，定义于ch.qos.logback.classic.Level类。如果 logger没有被分配级别，那么它将从有被分配级别的最近的祖先那里继承级别。root logger 默认级别是 DEBUG。<h4 id="打印方法与基本的选择规则"><a href="#打印方法与基本的选择规则" class="headerlink" title="打印方法与基本的选择规则"></a>打印方法与基本的选择规则</h4>打印方法决定记录请求的级别。例如，如果 L 是一个 logger 实例，那么，语句 L.info(“..”)是一条级别为 INFO的记录语句。记录请求的级别在高于或等于其 logger 的有效级别时被称为被启用，否则，称为被禁用。记录请求级别为 p，其 logger的有效级别为 q，只有则当 p&gt;=q时，该请求才会被执行。<br>该规则是 logback 的核心。级别排序为： TRACE &lt; DEBUG &lt; INFO &lt; WARN &lt; ERROR</li>
+</ol>
+<h3 id="四、logback的默认配置"><a href="#四、logback的默认配置" class="headerlink" title="四、logback的默认配置"></a>四、logback的默认配置</h3><p>如果配置文件 logback-test.xml 和 logback.xml 都不存在，那么 logback 默认地会调用BasicConfigurator ，创建一个最小化配置。最小化配置由一个关联到根 logger 的ConsoleAppender 组成。输出用模式为%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n 的 PatternLayoutEncoder 进行格式化。root logger 默认级别是 DEBUG。
+　</p>
+<h4 id="Logback的配置文件"><a href="#Logback的配置文件" class="headerlink" title="Logback的配置文件"></a>Logback的配置文件</h4><p><strong>Logback</strong> 配置文件的语法非常灵活。正因为灵活，所以无法用 DTD 或 XML schema 进行定义。尽管如此，可以这样描述配置文件的基本结构：以&lt;configuration&gt;开头，后面有零个或多个&lt;appender&gt;元素，有零个或多个&lt;logger&gt;元素，有最多一个&lt;root&gt;元素。</p>
+<h4 id="Logback默认配置的步骤"><a href="#Logback默认配置的步骤" class="headerlink" title="Logback默认配置的步骤"></a>Logback默认配置的步骤</h4><ul>
+<li>尝试在 classpath下查找文件logback-test.xml；</li>
+<li>如果文件不存在，则查找文件logback.xml；</li>
+<li>如果两个文件都不存在，logback用BasicConfigurator自动对自己进行配置，这会导致记录输出到控制台。</li>
+</ul>
+<h3 id="五、logback-xml常用配置详解"><a href="#五、logback-xml常用配置详解" class="headerlink" title="五、logback.xml常用配置详解"></a>五、logback.xml常用配置详解</h3><p> <img src="https://img-blog.csdn.net/20180402204701487?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hpYW95dTE5OTEwMzIx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<h4 id="根节点-lt-configuration-gt-，包含下面三个属性："><a href="#根节点-lt-configuration-gt-，包含下面三个属性：" class="headerlink" title="根节点&lt;configuration&gt;，包含下面三个属性："></a>根节点&lt;configuration&gt;，包含下面三个属性：</h4><p>　　　　<strong>scan</strong>: 当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。<br>　　　　<strong>scanPeriod</strong>: 设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。<br>　　　　<strong>debug</strong>: 当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。<br>　　例如：<br>　　　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration scan=&quot;true&quot; scanPeriod=&quot;60 seconds&quot; debug=&quot;false&quot;&gt; </span><br><span class="line">　　　　　　&lt;!--其他配置省略--&gt; </span><br><span class="line">　　　　&lt;/configuration&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="子节点-lt-contextName-gt-：用来设置上下文名称，每个logger都关联到logger上下文，默认上下文名称为default。但可以使用-lt-contextName-gt-设置成其他名字，用于区分不同应用程序的记录。一旦设置，不能修改。"><a href="#子节点-lt-contextName-gt-：用来设置上下文名称，每个logger都关联到logger上下文，默认上下文名称为default。但可以使用-lt-contextName-gt-设置成其他名字，用于区分不同应用程序的记录。一旦设置，不能修改。" class="headerlink" title="子节点&lt;contextName&gt;：用来设置上下文名称，每个logger都关联到logger上下文，默认上下文名称为default。但可以使用&lt;contextName&gt;设置成其他名字，用于区分不同应用程序的记录。一旦设置，不能修改。"></a>子节点&lt;contextName&gt;：用来设置上下文名称，每个logger都关联到logger上下文，默认上下文名称为default。但可以使用&lt;contextName&gt;设置成其他名字，用于区分不同应用程序的记录。一旦设置，不能修改。</h4><p>　　例如：
+　　　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration scan=&quot;true&quot; scanPeriod=&quot;60 seconds&quot; debug=&quot;false&quot;&gt; </span><br><span class="line">　　　　　　&lt;contextName&gt;myAppName&lt;/contextName&gt; </span><br><span class="line">　　　　　　&lt;!--其他配置省略--&gt;</span><br><span class="line">　　　　&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="子节点-lt-property-gt-：用来定义变量值，它有两个属性name和value，通过-lt-property-gt-定义的值会被插入到logger上下文中，可以使“-”来使用变量。"><a href="#子节点-lt-property-gt-：用来定义变量值，它有两个属性name和value，通过-lt-property-gt-定义的值会被插入到logger上下文中，可以使“-”来使用变量。" class="headerlink" title="子节点&lt;property&gt; ：用来定义变量值，它有两个属性name和value，通过&lt;property&gt;定义的值会被插入到logger上下文中，可以使“${}”来使用变量。"></a>子节点&lt;property&gt; ：用来定义变量值，它有两个属性name和value，通过&lt;property&gt;定义的值会被插入到logger上下文中，可以使“${}”来使用变量。</h4><p>　　　　name: 变量的名称<br>　　　　value: 的值时变量定义的值<br>　　例如：
+　　　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration scan=&quot;true&quot; scanPeriod=&quot;60 seconds&quot; debug=&quot;false&quot;&gt; </span><br><span class="line">　　　　　　&lt;property name=&quot;APP_Name&quot; value=&quot;myAppName&quot; /&gt; </span><br><span class="line">　　　　　　&lt;contextName&gt;$&#123;APP_Name&#125;&lt;/contextName&gt; </span><br><span class="line">　　　　　　&lt;!--其他配置省略--&gt; </span><br><span class="line">　　　　&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="子节点-lt-timestamp-gt-：获取时间戳字符串，他有两个属性key和datePattern"><a href="#子节点-lt-timestamp-gt-：获取时间戳字符串，他有两个属性key和datePattern" class="headerlink" title="子节点&lt;timestamp&gt;：获取时间戳字符串，他有两个属性key和datePattern"></a>子节点&lt;timestamp&gt;：获取时间戳字符串，他有两个属性key和datePattern</h4><p>　　　　<strong>key</strong>: 标识此&lt;timestamp&gt; 的名字；<br>　　　　<strong>datePattern</strong>: 设置将当前时间（解析配置文件的时间）转换为字符串的模式，遵循java.txt.SimpleDateFormat的格式。<br>　　例如：
+　　　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration scan=&quot;true&quot; scanPeriod=&quot;60 seconds&quot; debug=&quot;false&quot;&gt; </span><br><span class="line">　　　　　　&lt;timestamp key=&quot;bySecond&quot; datePattern=&quot;yyyyMMdd&apos;T&apos;HHmmss&quot;/&gt; </span><br><span class="line">　　　　　　&lt;contextName&gt;$&#123;bySecond&#125;&lt;/contextName&gt; </span><br><span class="line">　　　　　　&lt;!-- 其他配置省略--&gt; </span><br><span class="line">　　　　&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="子节点-lt-appender-gt-：负责写日志的组件，它有两个必要属性name和class。name指定appender名称，class指定appender的全限定名"><a href="#子节点-lt-appender-gt-：负责写日志的组件，它有两个必要属性name和class。name指定appender名称，class指定appender的全限定名" class="headerlink" title="子节点&lt;appender&gt;：负责写日志的组件，它有两个必要属性name和class。name指定appender名称，class指定appender的全限定名"></a>子节点&lt;appender&gt;：负责写日志的组件，它有两个必要属性name和class。name指定appender名称，class指定appender的全限定名</h4><h5 id="ConsoleAppender-把日志输出到控制台，有以下子节点："><a href="#ConsoleAppender-把日志输出到控制台，有以下子节点：" class="headerlink" title="ConsoleAppender 把日志输出到控制台，有以下子节点："></a>ConsoleAppender 把日志输出到控制台，有以下子节点：</h5><p>　　　　　　&lt;encoder&gt;：对日志进行格式化。（具体参数稍后讲解 ）<br>　　　　　　&lt;target&gt;：字符串System.out(默认)或者System.err（区别不多说了）<br>　　　　例如：
+　　　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt; </span><br><span class="line">　　　　　　&lt;appender name=&quot;STDOUT&quot; class=&quot;ch.qos.logback.core.ConsoleAppender&quot;&gt; </span><br><span class="line">　　　　　　&lt;encoder&gt; </span><br><span class="line">　　　　　　　　&lt;pattern&gt;%-4relative [%thread] %-5level %logger&#123;35&#125; - %msg %n&lt;/pattern&gt; </span><br><span class="line">　　　　　　&lt;/encoder&gt; </span><br><span class="line">　　　　　　&lt;/appender&gt; </span><br><span class="line"></span><br><span class="line">　　　　　　&lt;root level=&quot;DEBUG&quot;&gt; </span><br><span class="line">　　　　　　　　&lt;appender-ref ref=&quot;STDOUT&quot; /&gt; </span><br><span class="line">　　　　　　&lt;/root&gt; </span><br><span class="line">　　　　&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>　　　　上述配置表示把&gt;=DEBUG级别的日志都输出到控制台</p>
+<h5 id="FileAppender：把日志添加到文件，有以下子节点："><a href="#FileAppender：把日志添加到文件，有以下子节点：" class="headerlink" title="FileAppender：把日志添加到文件，有以下子节点："></a>FileAppender：把日志添加到文件，有以下子节点：</h5><p>　　　　　　<strong>&lt;file&gt;</strong>：被写入的文件名，可以是相对目录，也可以是绝对目录，如果上级目录不存在会自动创建，没有默认值。<br>　　　　　　<strong>&lt;append&gt;</strong>：如果是 true，日志被追加到文件结尾，如果是 false，清空现存文件，默认是true。<br>　　　　　　<strong>&lt;encoder&gt;</strong>：对记录事件进行格式化。（具体参数稍后讲解 ）<br>　　　　　　<strong>&lt;prudent&gt;</strong>：如果是 true，日志会被安全的写入文件，即使其他的FileAppender也在向此文件做写入操作，效率低，默认是 false。<br>　　　　例如：
+　　　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt; </span><br><span class="line">　　　　　　&lt;appender name=&quot;FILE&quot; class=&quot;ch.qos.logback.core.FileAppender&quot;&gt; </span><br><span class="line">　　　　　　　　&lt;file&gt;testFile.log&lt;/file&gt; </span><br><span class="line">　　　　　　　　&lt;append&gt;true&lt;/append&gt; </span><br><span class="line">　　　　　　　　&lt;encoder&gt; </span><br><span class="line">　　　　　　　　　　&lt;pattern&gt;%-4relative [%thread] %-5level %logger&#123;35&#125; - %msg%n&lt;/pattern&gt; </span><br><span class="line">　　　　　　　　&lt;/encoder&gt; </span><br><span class="line">　　　　　　&lt;/appender&gt; </span><br><span class="line"></span><br><span class="line">　　　　　　&lt;root level=&quot;DEBUG&quot;&gt; </span><br><span class="line">　　　　　　&lt;appender-ref ref=&quot;FILE&quot; /&gt; </span><br><span class="line">　　　　　　&lt;/root&gt; </span><br><span class="line">　　　　&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>　　　　上述配置表示把&gt;=DEBUG级别的日志都输出到testFile.log</p>
+<h5 id="RollingFileAppender：滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。有以下子节点："><a href="#RollingFileAppender：滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。有以下子节点：" class="headerlink" title="RollingFileAppender：滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。有以下子节点："></a>RollingFileAppender：滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。有以下子节点：</h5><p>　　　　　　<strong>&lt;file&gt;</strong>：被写入的文件名，可以是相对目录，也可以是绝对目录，如果上级目录不存在会自动创建，没有默认值。<br>　　　　　　<strong>&lt;append&gt;</strong>：如果是 true，日志被追加到文件结尾，如果是 false，清空现存文件，默认是true。<br>　　　　　　<strong>&lt;rollingPolicy&gt;</strong> :当发生滚动时，决定RollingFileAppender的行为，涉及文件移动和重命名。属性class定义具体的滚动策略类<br>　　　　　　class=”ch.qos.logback.core.rolling.TimeBasedRollingPolicy”： 最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动。有以下子节点：<br>　　　　　　　　<strong>&lt;fileNamePattern&gt;</strong>：必要节点，包含文件名及“%d”转换符，“%d”可以包含一个java.text.SimpleDateFormat指定的时间格式，如：%d{yyyy-MM}。<br>如果直接使用 %d，默认格式是 yyyy-MM-dd。RollingFileAppender的file字节点可有可无，通过设置file，可以为活动文件和归档文件指定不同位置，当前日志总是记录到file指定的文件（活动文件），活动文件的名字不会改变；<br>如果没设置file，活动文件的名字会根据fileNamePattern 的值，每隔一段时间改变一次。“/”或者“\”会被当做目录分隔符。<br>　　　　　　　　<strong>&lt;maxHistory&gt;</strong>:<br>可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件。假设设置每个月滚动，且&lt;maxHistory&gt;是6，则只保存最近6个月的文件，删除之前的旧文件。注意，删除旧文件是，那些为了归档而创建的目录也会被删除。</p>
+<p>　　　　　　class=”ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy”： 查看当前活动文件的大小，如果超过指定大小会告知RollingFileAppender 触发当前活动文件滚动。只有一个节点:<br>　　　　　　　　<strong>&lt;maxFileSize&gt;</strong>:这是活动文件的大小，默认值是10MB。<br>　　　　　　　　<strong>&lt;prudent&gt;</strong>：当为true时，不支持FixedWindowRollingPolicy。支持TimeBasedRollingPolicy，但是有两个限制，1不支持也不允许文件压缩，2不能设置file属性，必须留空。 </p>
+<p>　　　　　　<strong>&lt;triggeringPolicy&gt;</strong>: 告知 RollingFileAppender 合适激活滚动。<br>　　　　　　class=”ch.qos.logback.core.rolling.FixedWindowRollingPolicy” 根据固定窗口算法重命名文件的滚动策略。有以下子节点：<br>　　　　　　　　<strong>&lt;minIndex&gt;</strong>:窗口索引最小值<br>　　　　　　　　<strong>&lt;maxIndex&gt;</strong>:窗口索引最大值，当用户指定的窗口过大时，会自动将窗口设置为12。<br>　　　　　　　　<strong>&lt;fileNamePattern&gt;</strong>:必须包含“%i”例如，假设最小值和最大值分别为1和2，命名模式为 mylog%i.log,会产生归档文件mylog1.log和mylog2.log。还可以指定文件压缩选项，例如，mylog%i.log.gz 或者 没有log%i.log.zip<br>　　　　　　例如： 
+　　　　　　　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt; </span><br><span class="line">　　　　　　　　　　&lt;appender name=&quot;FILE&quot; class=&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt; </span><br><span class="line">　　　　　　　　　　　　&lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;&gt; </span><br><span class="line">　　　　　　　　　　　　　　&lt;fileNamePattern&gt;logFile.%d&#123;yyyy-MM-dd&#125;.log&lt;/fileNamePattern&gt; </span><br><span class="line">　　　　　　　　　　　　　　&lt;maxHistory&gt;30&lt;/maxHistory&gt; </span><br><span class="line">　　　　　　　　　　　　&lt;/rollingPolicy&gt; </span><br><span class="line">　　　　　　　　　　　　&lt;encoder&gt; </span><br><span class="line">　　　　　　　　　　　　　　&lt;pattern&gt;%-4relative [%thread] %-5level %logger&#123;35&#125; - %msg%n&lt;/pattern&gt; </span><br><span class="line">　　　　　　　　　　　　&lt;/encoder&gt; </span><br><span class="line">　　　　　　　　　　&lt;/appender&gt; </span><br><span class="line"></span><br><span class="line">　　　　　　　　　　&lt;root level=&quot;DEBUG&quot;&gt; </span><br><span class="line">　　　　　　　　　　　　&lt;appender-ref ref=&quot;FILE&quot; /&gt; </span><br><span class="line">　　　　　　　　　　&lt;/root&gt; </span><br><span class="line">　　　　　　　　&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>　　　　　　　　上述配置表示每天生成一个日志文件，保存30天的日志文件。
+　　　　　　　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt; </span><br><span class="line">　　　　　　　　　　&lt;appender name=&quot;FILE&quot; class=&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt; </span><br><span class="line">　　　　　　　　　　　　&lt;file&gt;test.log&lt;/file&gt; </span><br><span class="line"></span><br><span class="line">　　　　　　　　　　　　&lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.FixedWindowRollingPolicy&quot;&gt; </span><br><span class="line">　　　　　　　　　　　　　　&lt;fileNamePattern&gt;tests.%i.log.zip&lt;/fileNamePattern&gt; </span><br><span class="line">　　　　　　　　　　　　　　&lt;minIndex&gt;1&lt;/minIndex&gt; </span><br><span class="line">　　　　　　　　　　　　　　&lt;maxIndex&gt;3&lt;/maxIndex&gt; </span><br><span class="line">　　　　　　　　　　　　&lt;/rollingPolicy&gt; </span><br><span class="line"></span><br><span class="line">　　　　　　　　　　　　&lt;triggeringPolicy class=&quot;ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy&quot;&gt; </span><br><span class="line">　　　　　　　　　　　　　　&lt;maxFileSize&gt;5MB&lt;/maxFileSize&gt; </span><br><span class="line">　　　　　　　　　　　　&lt;/triggeringPolicy&gt; </span><br><span class="line">　　　　　　　　　　　　&lt;encoder&gt; </span><br><span class="line">　　　　　　　　　　　　　　&lt;pattern&gt;%-4relative [%thread] %-5level %logger&#123;35&#125; - %msg%n&lt;/pattern&gt; </span><br><span class="line">　　　　　　　　　　　　&lt;/encoder&gt; </span><br><span class="line">　　　　　　　　　　&lt;/appender&gt; </span><br><span class="line"></span><br><span class="line">　　　　　　　　　　&lt;root level=&quot;DEBUG&quot;&gt; </span><br><span class="line">　　　　　　　　　　　　&lt;appender-ref ref=&quot;FILE&quot; /&gt; </span><br><span class="line">　　　　　　　　　　&lt;/root&gt; </span><br><span class="line">　　　　　　　　&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>　　　　　　　　上述配置表示按照固定窗口模式生成日志文件，当文件大于20MB时，生成新的日志文件。窗口大小是1到3，当保存了3个归档文件后，将覆盖最早的日志。<br>　　　　　　<strong>&lt;encoder&gt;</strong>：对记录事件进行格式化。负责两件事，一是把日志信息转换成字节数组，二是把字节数组写入到输出流。<br>PatternLayoutEncoder 是唯一有用的且默认的encoder ，有一个&lt;pattern&gt;节点，用来设置日志的输入格式。使用“%”加“转换符”方式，如果要输出“%”，则必须用“\”对“\%”进行转义。</p>
+<h5 id="还有SocketAppender、SMTPAppender、DBAppender、SyslogAppender、SiftingAppender，并不常用，这里就不详解了。"><a href="#还有SocketAppender、SMTPAppender、DBAppender、SyslogAppender、SiftingAppender，并不常用，这里就不详解了。" class="headerlink" title="还有SocketAppender、SMTPAppender、DBAppender、SyslogAppender、SiftingAppender，并不常用，这里就不详解了。"></a>还有SocketAppender、SMTPAppender、DBAppender、SyslogAppender、SiftingAppender，并不常用，这里就不详解了。</h5><p>大家可以参考官方文档（<a href="http://logback.qos.ch/documentation.html），还可以编写自己的Appender。" target="_blank" rel="noopener">http://logback.qos.ch/documentation.html），还可以编写自己的Appender。</a> </p>
+<h5 id="子节点-lt-loger-gt-：用来设置某一个包或具体的某一个类的日志打印级别、以及指定-lt-appender-gt-。-lt-loger-gt-仅有一个name属性，一个可选的level和一个可选的addtivity属性。"><a href="#子节点-lt-loger-gt-：用来设置某一个包或具体的某一个类的日志打印级别、以及指定-lt-appender-gt-。-lt-loger-gt-仅有一个name属性，一个可选的level和一个可选的addtivity属性。" class="headerlink" title="子节点&lt;loger&gt;：用来设置某一个包或具体的某一个类的日志打印级别、以及指定&lt;appender&gt;。&lt;loger&gt;仅有一个name属性，一个可选的level和一个可选的addtivity属性。"></a>子节点&lt;loger&gt;：用来设置某一个包或具体的某一个类的日志打印级别、以及指定&lt;appender&gt;。&lt;loger&gt;仅有一个name属性，一个可选的level和一个可选的addtivity属性。</h5><p>可以包含零个或多个&lt;appender-ref&gt;元素，标识这个appender将会添加到这个loger<br>　　　　name: 用来指定受此loger约束的某一个包或者具体的某一个类。<br>　　　　level: 用来设置打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL和OFF，还有一个特俗值INHERITED或者同义词NULL，代表强制执行上级的级别。 如果未设置此属性，那么当前loger将会继承上级的级别。<br>addtivity: 是否向上级loger传递打印信息。默认是true。同&lt;loger&gt;一样，可以包含零个或多个&lt;appender-ref&gt;元素，标识这个appender将会添加到这个loger。</p>
+<h5 id="子节点-lt-root-gt-它也是-lt-loger-gt-元素，但是它是根loger-是所有-lt-loger-gt-的上级。只有一个level属性，因为name已经被命名为”root”-且已经是最上级了。"><a href="#子节点-lt-root-gt-它也是-lt-loger-gt-元素，但是它是根loger-是所有-lt-loger-gt-的上级。只有一个level属性，因为name已经被命名为”root”-且已经是最上级了。" class="headerlink" title="子节点&lt;root&gt;:它也是&lt;loger&gt;元素，但是它是根loger,是所有&lt;loger&gt;的上级。只有一个level属性，因为name已经被命名为”root”,且已经是最上级了。"></a>子节点&lt;root&gt;:它也是&lt;loger&gt;元素，但是它是根loger,是所有&lt;loger&gt;的上级。只有一个level属性，因为name已经被命名为”root”,且已经是最上级了。</h5><p>　　　　level: 用来设置打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL和OFF，不能设置为INHERITED或者同义词NULL。 默认是DEBUG。 </p>
+<h3 id="六、常用loger配置"><a href="#六、常用loger配置" class="headerlink" title="六、常用loger配置"></a>六、常用loger配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- show parameters for hibernate sql 专为 Hibernate 定制 --&gt;</span><br><span class="line">&lt;logger name=&quot;org.hibernate.type.descriptor.sql.BasicBinder&quot; level=&quot;TRACE&quot; /&gt;</span><br><span class="line">&lt;logger name=&quot;org.hibernate.type.descriptor.sql.BasicExtractor&quot; level=&quot;DEBUG&quot; /&gt;</span><br><span class="line">&lt;logger name=&quot;org.hibernate.SQL&quot; level=&quot;DEBUG&quot; /&gt;</span><br><span class="line">&lt;logger name=&quot;org.hibernate.engine.QueryParameters&quot; level=&quot;DEBUG&quot; /&gt;</span><br><span class="line">&lt;logger name=&quot;org.hibernate.engine.query.HQLQueryPlan&quot; level=&quot;DEBUG&quot; /&gt;</span><br><span class="line">&lt;!--myibatis log configure--&gt;</span><br><span class="line">&lt;logger name=&quot;com.apache.ibatis&quot; level=&quot;TRACE&quot;/&gt;</span><br><span class="line">&lt;logger name=&quot;java.sql.Connection&quot; level=&quot;DEBUG&quot;/&gt;</span><br><span class="line">&lt;logger name=&quot;java.sql.Statement&quot; level=&quot;DEBUG&quot;/&gt;</span><br><span class="line">&lt;logger name=&quot;java.sql.PreparedStatement&quot; level=&quot;DEBUG&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="七、Demo"><a href="#七、Demo" class="headerlink" title="七、Demo"></a>七、Demo</h3><h4 id="添加依赖包logback使用需要和slf4j一起使用，所以总共需要添加依赖的包有slf4j-api"><a href="#添加依赖包logback使用需要和slf4j一起使用，所以总共需要添加依赖的包有slf4j-api" class="headerlink" title="添加依赖包logback使用需要和slf4j一起使用，所以总共需要添加依赖的包有slf4j-api"></a>添加依赖包logback使用需要和slf4j一起使用，所以总共需要添加依赖的包有slf4j-api</h4><p>logback使用需要和slf4j一起使用，所以总共需要添加依赖的包有slf4j-api.jar，logback-core.jar，logback-classic.jar，logback-access.jar这个暂时用不到所以不添加依赖了，maven配置
+　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;properties&gt;</span><br><span class="line">　　　　&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">　　　　&lt;logback.version&gt;1.1.7&lt;/logback.version&gt;</span><br><span class="line">　　　　&lt;slf4j.version&gt;1.7.21&lt;/slf4j.version&gt;</span><br><span class="line">　　&lt;/properties&gt;</span><br><span class="line">　　&lt;dependencies&gt;</span><br><span class="line">　　　　&lt;dependency&gt;</span><br><span class="line">　　　　　　&lt;groupId&gt;org.slf4j&lt;/groupId&gt;</span><br><span class="line">　　　　　　&lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;</span><br><span class="line">　　　　　　&lt;version&gt;$&#123;slf4j.version&#125;&lt;/version&gt;</span><br><span class="line">　　　　　　&lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">　　　　&lt;/dependency&gt;</span><br><span class="line">　　　　&lt;dependency&gt;</span><br><span class="line">　　　　　　&lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;</span><br><span class="line">　　　　　　&lt;artifactId&gt;logback-core&lt;/artifactId&gt;</span><br><span class="line">　　　　　　&lt;version&gt;$&#123;logback.version&#125;&lt;/version&gt;</span><br><span class="line">　　　　&lt;/dependency&gt;</span><br><span class="line">　　　　&lt;dependency&gt;</span><br><span class="line">　　　　　　&lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;</span><br><span class="line">　　　　　　&lt;artifactId&gt;logback-classic&lt;/artifactId&gt;</span><br><span class="line">　　　　　　&lt;version&gt;$&#123;logback.version&#125;&lt;/version&gt;</span><br><span class="line">　　　　　　&lt;/dependency&gt;</span><br><span class="line">　　&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="logback-xml配置"><a href="#logback-xml配置" class="headerlink" title="logback.xml配置"></a>logback.xml配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;configuration debug=&quot;false&quot;&gt;</span><br><span class="line">&lt;!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径--&gt;</span><br><span class="line">&lt;property name=&quot;LOG_HOME&quot; value=&quot;/home&quot; /&gt;</span><br><span class="line">&lt;!-- 控制台输出 --&gt;</span><br><span class="line">&lt;appender name=&quot;STDOUT&quot; class=&quot;ch.qos.logback.core.ConsoleAppender&quot;&gt;</span><br><span class="line">&lt;encoder class=&quot;ch.qos.logback.classic.encoder.PatternLayoutEncoder&quot;&gt;</span><br><span class="line">&lt;!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--&gt;</span><br><span class="line">&lt;pattern&gt;%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n&lt;/pattern&gt;</span><br><span class="line">&lt;/encoder&gt;</span><br><span class="line">&lt;/appender&gt;</span><br><span class="line">&lt;!-- 按照每天生成日志文件 --&gt;</span><br><span class="line">&lt;appender name=&quot;FILE&quot; class=&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt;</span><br><span class="line">&lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;&gt;</span><br><span class="line">&lt;!--日志文件输出的文件名--&gt;</span><br><span class="line">&lt;FileNamePattern&gt;$&#123;LOG_HOME&#125;/TestWeb.log.%d&#123;yyyy-MM-dd&#125;.log&lt;/FileNamePattern&gt;</span><br><span class="line">&lt;!--日志文件保留天数--&gt;</span><br><span class="line">&lt;MaxHistory&gt;30&lt;/MaxHistory&gt;</span><br><span class="line">&lt;/rollingPolicy&gt;</span><br><span class="line">&lt;encoder class=&quot;ch.qos.logback.classic.encoder.PatternLayoutEncoder&quot;&gt;</span><br><span class="line">&lt;!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--&gt;</span><br><span class="line">&lt;pattern&gt;%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n&lt;/pattern&gt;</span><br><span class="line">&lt;/encoder&gt;</span><br><span class="line">&lt;!--日志文件最大的大小--&gt;</span><br><span class="line">&lt;triggeringPolicy class=&quot;ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy&quot;&gt;</span><br><span class="line">&lt;MaxFileSize&gt;10MB&lt;/MaxFileSize&gt;</span><br><span class="line">&lt;/triggeringPolicy&gt;</span><br><span class="line">&lt;/appender&gt;</span><br><span class="line">&lt;!-- 日志输出级别 --&gt;</span><br><span class="line">&lt;root level=&quot;INFO&quot;&gt;</span><br><span class="line">&lt;appender-ref ref=&quot;STDOUT&quot; /&gt;</span><br><span class="line">&lt;/root&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h4><p>　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">　　* Hello world!</span><br><span class="line">　　*/</span><br><span class="line">　　public class App &#123;</span><br><span class="line">　　private final static Logger logger = LoggerFactory.getLogger(App.class);</span><br><span class="line">　　　　public static void main(String[] args) &#123;</span><br><span class="line">　　　　　　logger.info(&quot;logback 成功了&quot;);</span><br><span class="line">　　　　　　logger.error(&quot;logback 成功了&quot;);</span><br><span class="line">　　　　　　logger.debug(&quot;logback 成功了&quot;);</span><br><span class="line">　　　　&#125;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h3><p>logback的配置，需要配置输出源appender，打日志的loger（子节点）和root（根节点），实际上，它输出日志是从子节点开始，子节点如果有输出源直接输入，如果无，判断配置的addtivity，是否像上级传递，即是否向root传递，传递则采用root的输出源，否则不输出日志。</p>
+<p>相关文章：<br>行走在云端的愚公    <a href="http://www.cnblogs.com/warking/p/5710303.html" target="_blank" rel="noopener">http://www.cnblogs.com/warking/p/5710303.html</a></p>
+
+      
+    </div>
+    
+    
+    
+	
+	<div>  <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束  感谢阅读------</div>
+    
+</div> </div>
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://githubimg.lushunde.com/gzh.jpg" alt="鲁顺德 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的分享资源！</div>
+</div>
+
+      </div>
+    
+
+	
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://githubimg.lushunde.com/wx.jpg" alt="鲁顺德 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://githubimg.lushunde.com/zfb.jpg" alt="鲁顺德 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/logback/" rel="tag"><i class="fa fa-tag"></i> logback</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/18/Centos1708使用systemctl/" rel="next" title="Centos1708使用systemctl">
+                <i class="fa fa-chevron-left"></i> Centos1708使用systemctl
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/02/ajax跨域完全讲解/" rel="prev" title="Ajax跨域完全讲解">
+                Ajax跨域完全讲解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://githubimg.lushunde.com/head.png"
+                alt="鲁顺德" />
+            
+              <p class="site-author-name" itemprop="name">鲁顺德</p>
+              <p class="site-description motion-element" itemprop="description">未来不可预期，才会期待和精彩。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lushunde321" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lushunde321@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/xiaoyu19910321" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/lushunde321/" title="GitHub" target="_blank">GitHub</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、logback的介绍"><span class="nav-number">1.</span> <span class="nav-text">一、logback的介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、logback取代log4j的理由："><span class="nav-number">2.</span> <span class="nav-text">二、logback取代log4j的理由：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、logback的配置介绍"><span class="nav-number">3.</span> <span class="nav-text">三、logback的配置介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Logger、appender及layout"><span class="nav-number">3.1.</span> <span class="nav-text">Logger、appender及layout</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#logger-context"><span class="nav-number">3.2.</span> <span class="nav-text">logger context</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有效级别及级别的继承"><span class="nav-number">3.3.</span> <span class="nav-text">有效级别及级别的继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打印方法与基本的选择规则"><span class="nav-number">3.4.</span> <span class="nav-text">打印方法与基本的选择规则</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、logback的默认配置"><span class="nav-number">4.</span> <span class="nav-text">四、logback的默认配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Logback的配置文件"><span class="nav-number">4.1.</span> <span class="nav-text">Logback的配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Logback默认配置的步骤"><span class="nav-number">4.2.</span> <span class="nav-text">Logback默认配置的步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、logback-xml常用配置详解"><span class="nav-number">5.</span> <span class="nav-text">五、logback.xml常用配置详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#根节点-lt-configuration-gt-，包含下面三个属性："><span class="nav-number">5.1.</span> <span class="nav-text">根节点&lt;configuration&gt;，包含下面三个属性：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子节点-lt-contextName-gt-：用来设置上下文名称，每个logger都关联到logger上下文，默认上下文名称为default。但可以使用-lt-contextName-gt-设置成其他名字，用于区分不同应用程序的记录。一旦设置，不能修改。"><span class="nav-number">5.2.</span> <span class="nav-text">子节点&lt;contextName&gt;：用来设置上下文名称，每个logger都关联到logger上下文，默认上下文名称为default。但可以使用&lt;contextName&gt;设置成其他名字，用于区分不同应用程序的记录。一旦设置，不能修改。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子节点-lt-property-gt-：用来定义变量值，它有两个属性name和value，通过-lt-property-gt-定义的值会被插入到logger上下文中，可以使“-”来使用变量。"><span class="nav-number">5.3.</span> <span class="nav-text">子节点&lt;property&gt; ：用来定义变量值，它有两个属性name和value，通过&lt;property&gt;定义的值会被插入到logger上下文中，可以使“${}”来使用变量。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子节点-lt-timestamp-gt-：获取时间戳字符串，他有两个属性key和datePattern"><span class="nav-number">5.4.</span> <span class="nav-text">子节点&lt;timestamp&gt;：获取时间戳字符串，他有两个属性key和datePattern</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子节点-lt-appender-gt-：负责写日志的组件，它有两个必要属性name和class。name指定appender名称，class指定appender的全限定名"><span class="nav-number">5.5.</span> <span class="nav-text">子节点&lt;appender&gt;：负责写日志的组件，它有两个必要属性name和class。name指定appender名称，class指定appender的全限定名</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ConsoleAppender-把日志输出到控制台，有以下子节点："><span class="nav-number">5.5.1.</span> <span class="nav-text">ConsoleAppender 把日志输出到控制台，有以下子节点：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#FileAppender：把日志添加到文件，有以下子节点："><span class="nav-number">5.5.2.</span> <span class="nav-text">FileAppender：把日志添加到文件，有以下子节点：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RollingFileAppender：滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。有以下子节点："><span class="nav-number">5.5.3.</span> <span class="nav-text">RollingFileAppender：滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。有以下子节点：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#还有SocketAppender、SMTPAppender、DBAppender、SyslogAppender、SiftingAppender，并不常用，这里就不详解了。"><span class="nav-number">5.5.4.</span> <span class="nav-text">还有SocketAppender、SMTPAppender、DBAppender、SyslogAppender、SiftingAppender，并不常用，这里就不详解了。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#子节点-lt-loger-gt-：用来设置某一个包或具体的某一个类的日志打印级别、以及指定-lt-appender-gt-。-lt-loger-gt-仅有一个name属性，一个可选的level和一个可选的addtivity属性。"><span class="nav-number">5.5.5.</span> <span class="nav-text">子节点&lt;loger&gt;：用来设置某一个包或具体的某一个类的日志打印级别、以及指定&lt;appender&gt;。&lt;loger&gt;仅有一个name属性，一个可选的level和一个可选的addtivity属性。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#子节点-lt-root-gt-它也是-lt-loger-gt-元素，但是它是根loger-是所有-lt-loger-gt-的上级。只有一个level属性，因为name已经被命名为”root”-且已经是最上级了。"><span class="nav-number">5.5.6.</span> <span class="nav-text">子节点&lt;root&gt;:它也是&lt;loger&gt;元素，但是它是根loger,是所有&lt;loger&gt;的上级。只有一个level属性，因为name已经被命名为”root”,且已经是最上级了。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、常用loger配置"><span class="nav-number">6.</span> <span class="nav-text">六、常用loger配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、Demo"><span class="nav-number">7.</span> <span class="nav-text">七、Demo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加依赖包logback使用需要和slf4j一起使用，所以总共需要添加依赖的包有slf4j-api"><span class="nav-number">7.1.</span> <span class="nav-text">添加依赖包logback使用需要和slf4j一起使用，所以总共需要添加依赖的包有slf4j-api</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#logback-xml配置"><span class="nav-number">7.2.</span> <span class="nav-text">logback.xml配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java代码"><span class="nav-number">7.3.</span> <span class="nav-text">java代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、总结"><span class="nav-number">8.</span> <span class="nav-text">八、总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鲁顺德</span>
+
+  
+<!--- 换行代码
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">13.7k</span>
+  
+</div>
+-->
+<!-- 隐藏底部的代码
+ 
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+-->
+
+<div class="theme-info">
+  <div class="with-love"><i class="fa fa-file-word-o"></i></div>
+  <span class="post-count">博客全站共13.7k字</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 本站访客
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 本站访问
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2159493"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
