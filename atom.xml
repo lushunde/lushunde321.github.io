@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://github.lushunde.com/"/>
-  <updated>2018-04-02T15:39:25.640Z</updated>
+  <updated>2018-05-10T14:54:40.204Z</updated>
   <id>http://github.lushunde.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Centos7安装 OpenFalcon单机版</title>
+    <link href="http://github.lushunde.com/2018/05/10/centos7%E5%AE%89%E8%A3%85-OpenFalcon%E5%8D%95%E6%9C%BA%E7%89%88/"/>
+    <id>http://github.lushunde.com/2018/05/10/centos7安装-OpenFalcon单机版/</id>
+    <published>2018-05-10T14:51:43.000Z</published>
+    <updated>2018-05-10T14:54:40.204Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="1-跟新yum源"><a href="#1-跟新yum源" class="headerlink" title="1.跟新yum源"></a>1.跟新yum源</h3><pre><code>yum clean allyum makecacheyum update -y</code></pre><h3 id="2-安装git"><a href="#2-安装git" class="headerlink" title="2.安装git"></a>2.安装git</h3><pre><code>因为mysql的脚本要么使用git下载，要么上传下载好的【上传可不安装】yum install -y git</code></pre><h3 id="3-安装redis"><a href="#3-安装redis" class="headerlink" title="3.安装redis"></a>3.安装redis</h3><pre><code>如果没有装epel，会提示No package redis available，也就是没有安装包可用，因为官方yum和阿里yum可能都没有redis，故只能通过fedora的epel仓库来安装 命令：yum install -y epel-release安装redisyum install redis -y启动redissystemctl start redis设置redis开机启动 systemctl enable redis可以用下面的语句查看redis是否开启systemctl status redis</code></pre><h3 id="4-安装mysql"><a href="#4-安装mysql" class="headerlink" title="4.安装mysql"></a>4.安装mysql</h3><pre><code>因为centos7后系统使用 mariadb 替换了 mysql，所以先卸载mariadb 在安装mysql</code></pre><h4 id="卸载mariadb-先查询，在强力删除"><a href="#卸载mariadb-先查询，在强力删除" class="headerlink" title="卸载mariadb  先查询，在强力删除"></a>卸载mariadb  先查询，在强力删除</h4><pre><code>rpm -qa | grep mariadbrpm -e --nodeps mariadb-libs-5.5.50-1.el7_2.x86_64</code></pre><h4 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h4><p><strong>下载repo源</strong><br>    wget <a href="http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm" target="_blank" rel="noopener">http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm</a><br><strong>安装该rpm包</strong>（安装这个包后，会获得两个mysql的yum repo源：/etc/yum.repos.d/mysql-community.repo，/etc/yum.repos.d/mysql-community-source.repo）<br>    rpm -ivh mysql-community-release-el7-5.noarch.rpm<br><strong>安装mysql</strong><br>    yum install mysql-server -y<br><strong>启动mysql</strong><br>    systemctl start mysql<br><strong>查看mysql是否开启</strong><br>    systemctl status mysql</p><h3 id="5-下载"><a href="#5-下载" class="headerlink" title="5.下载"></a>5.下载</h3><h4 id="数据库脚本"><a href="#数据库脚本" class="headerlink" title="数据库脚本"></a>数据库脚本</h4><pre><code>cd /tmp/ &amp;&amp; git clone https://github.com/open-falcon/falcon-plus.git cd /tmp/falcon-plus/scripts/mysql/db_schema/mysql -h 127.0.0.1 -u root -p &lt; 1_uic-db-schema.sqlmysql -h 127.0.0.1 -u root -p &lt; 2_portal-db-schema.sqlmysql -h 127.0.0.1 -u root -p &lt; 3_dashboard-db-schema.sqlmysql -h 127.0.0.1 -u root -p &lt; 4_graph-db-schema.sqlmysql -h 127.0.0.1 -u root -p &lt; 5_alarms-db-schema.sqlrm -rf /tmp/falcon-plus/</code></pre><h4 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h4><pre><code>wget https://github.com/open-falcon/falcon-plus/archive/master.zip</code></pre><h2 id="后台安装"><a href="#后台安装" class="headerlink" title="后台安装"></a>后台安装</h2><h4 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h4><pre><code>export FALCON_HOME=/home/workexport WORKSPACE=$FALCON_HOME/open-falconmkdir -p $WORKSPACE</code></pre><h4 id="解压二进制包"><a href="#解压二进制包" class="headerlink" title="解压二进制包"></a>解压二进制包</h4><pre><code>tar -xzvf open-falcon-v0.2.0.tar.gz -C $WORKSPACE在一台机器上启动所有的后端组件</code></pre><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><pre><code>cd $WORKSPACE./open-falcon start</code></pre><h4 id="检查所有模块的启动状况"><a href="#检查所有模块的启动状况" class="headerlink" title="检查所有模块的启动状况"></a>检查所有模块的启动状况</h4><pre><code>./open-falcon check</code></pre><h4 id="更多的命令行工具用法"><a href="#更多的命令行工具用法" class="headerlink" title="更多的命令行工具用法"></a>更多的命令行工具用法</h4><pre><code>./open-falcon [start|stop|restart|check|monitor|reload] module./open-falcon start agent./open-falcon check        falcon-graph         UP           53007          falcon-hbs         UP           53014        falcon-judge         UP           53020     falcon-transfer         UP           53026       falcon-nodata         UP           53032   falcon-aggregator         UP           53038        falcon-agent         UP           53044      falcon-gateway         UP           53050          falcon-api         UP           53056        falcon-alarm         UP           53063For debugging , You can check $WorkDir/$moduleName/log/logs/xxx.log</code></pre><h2 id="前台安装"><a href="#前台安装" class="headerlink" title="前台安装"></a>前台安装</h2><h3 id="创建工作目录-1"><a href="#创建工作目录-1" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><pre><code>export HOME=/home/workexport WORKSPACE=$HOME/open-falconmkdir -p $WORKSPACEcd $WORKSPACE</code></pre><h3 id="克隆前端组件代码"><a href="#克隆前端组件代码" class="headerlink" title="克隆前端组件代码"></a>克隆前端组件代码</h3><pre><code>cd $WORKSPACEgit clone https://github.com/open-falcon/dashboard.git</code></pre><h3 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h3><pre><code>yum install -y python-virtualenvyum install -y python-develyum install -y openldap-develyum install -y mysql-develyum groupinstall &quot;Development tools&quot;cd $WORKSPACE/dashboard/virtualenv ./env./env/bin/pip install -r pip_requirements.txt -i https://pypi.douban.com/simple</code></pre><h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><pre><code>dashboard的配置文件为： &apos;rrd/config.py&apos;，请根据实际情况修改</code></pre><h3 id="API-ADDR-表示后端api组件的地址"><a href="#API-ADDR-表示后端api组件的地址" class="headerlink" title="API_ADDR 表示后端api组件的地址"></a>API_ADDR 表示后端api组件的地址</h3><pre><code>API_ADDR = &quot;http://127.0.0.1:8080/api/v1&quot; </code></pre><h3 id="根据实际情况，修改PORTALDB-默认用户名为root，默认密码为””"><a href="#根据实际情况，修改PORTALDB-默认用户名为root，默认密码为””" class="headerlink" title="根据实际情况，修改PORTALDB*, 默认用户名为root，默认密码为””"></a>根据实际情况，修改PORTAL<em>DB</em>*, 默认用户名为root，默认密码为””</h3><h3 id="根据实际情况，修改ALARMDB-默认用户名为root，默认密码为””"><a href="#根据实际情况，修改ALARMDB-默认用户名为root，默认密码为””" class="headerlink" title="根据实际情况，修改ALARMDB*, 默认用户名为root，默认密码为””"></a>根据实际情况，修改ALARM<em>DB</em>*, 默认用户名为root，默认密码为””</h3><h3 id="在生产环境启动"><a href="#在生产环境启动" class="headerlink" title="在生产环境启动"></a>在生产环境启动</h3><pre><code>bash control start</code></pre><h3 id="停止dashboard运行"><a href="#停止dashboard运行" class="headerlink" title="停止dashboard运行"></a>停止dashboard运行</h3><pre><code>bash control stop</code></pre><h3 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h3><pre><code>bash control tail</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot; title=&quot;准备工作&quot;&gt;&lt;/a&gt;准备工作&lt;/h2&gt;&lt;h3 id=&quot;1-跟新yum源&quot;&gt;&lt;a href=&quot;#1-跟新yum源&quot; class=&quot;headerlink&quot; title=&quot;1
+      
+    
+    </summary>
+    
+      <category term="linux" scheme="http://github.lushunde.com/categories/linux/"/>
+    
+    
+      <category term="openfalcon" scheme="http://github.lushunde.com/tags/openfalcon/"/>
+    
+  </entry>
   
   <entry>
     <title>Quartz使用总结</title>
