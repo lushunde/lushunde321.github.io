@@ -126,7 +126,7 @@
 
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="nginx," />
 
 
 
@@ -139,21 +139,18 @@
 
 
 
-<meta name="description" content="Next主题文档地址：官方文档 前提条件 lushunde321.github.io 已经可以正常显示 博客内容 已经有一个域名 我的以 万网 lushunde.com 为例    注：cn域名需要备案，国际域名可以不用备案。备案比较麻烦，大约需要40天。   项目添加CNAME文件(避免每次上传文件设置github的个人域名)不需要后缀，只需要名字CNAME即可，打开添加 自己的域名，我的使用二">
-<meta name="keywords" content="hexo">
+<meta name="description" content="nginx 正常安装 仅支持 http和https的负载均衡和反向代理 相关文档：  由于现在需要使用TCP的负载均衡和反向代理功能，所以特别记录了这篇安装文档，本文中 TCP 模块添加在其中  CentOS 7 下安装 Nginx查看是否安装Nginx安装之前，最好检查一下是否已经安装有nginx[root@CENTOS7-TEST1 sbin]# find -name nginx如果系统已经安">
+<meta name="keywords" content="nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Github Pages  域名绑定（二）">
-<meta property="og:url" content="http://github.lushunde.com/2018/03/17/github-pages-域名绑定/index.html">
+<meta property="og:title" content="Centos7 安装 Nginx TCP HTTP">
+<meta property="og:url" content="http://github.lushunde.com/2018/06/13/centos7-安装-nginx-TCP-HTTP/index.html">
 <meta property="og:site_name" content="十四心">
-<meta property="og:description" content="Next主题文档地址：官方文档 前提条件 lushunde321.github.io 已经可以正常显示 博客内容 已经有一个域名 我的以 万网 lushunde.com 为例    注：cn域名需要备案，国际域名可以不用备案。备案比较麻烦，大约需要40天。   项目添加CNAME文件(避免每次上传文件设置github的个人域名)不需要后缀，只需要名字CNAME即可，打开添加 自己的域名，我的使用二">
+<meta property="og:description" content="nginx 正常安装 仅支持 http和https的负载均衡和反向代理 相关文档：  由于现在需要使用TCP的负载均衡和反向代理功能，所以特别记录了这篇安装文档，本文中 TCP 模块添加在其中  CentOS 7 下安装 Nginx查看是否安装Nginx安装之前，最好检查一下是否已经安装有nginx[root@CENTOS7-TEST1 sbin]# find -name nginx如果系统已经安">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://githubimg.lushunde.com/2018-03-18_030528.jpg">
-<meta property="og:image" content="http://githubimg.lushunde.com/2018-01-23_001701.png">
-<meta property="og:updated_time" content="2018-03-18T13:16:40.861Z">
+<meta property="og:updated_time" content="2018-06-13T12:02:41.883Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Github Pages  域名绑定（二）">
-<meta name="twitter:description" content="Next主题文档地址：官方文档 前提条件 lushunde321.github.io 已经可以正常显示 博客内容 已经有一个域名 我的以 万网 lushunde.com 为例    注：cn域名需要备案，国际域名可以不用备案。备案比较麻烦，大约需要40天。   项目添加CNAME文件(避免每次上传文件设置github的个人域名)不需要后缀，只需要名字CNAME即可，打开添加 自己的域名，我的使用二">
-<meta name="twitter:image" content="http://githubimg.lushunde.com/2018-03-18_030528.jpg">
+<meta name="twitter:title" content="Centos7 安装 Nginx TCP HTTP">
+<meta name="twitter:description" content="nginx 正常安装 仅支持 http和https的负载均衡和反向代理 相关文档：  由于现在需要使用TCP的负载均衡和反向代理功能，所以特别记录了这篇安装文档，本文中 TCP 模块添加在其中  CentOS 7 下安装 Nginx查看是否安装Nginx安装之前，最好检查一下是否已经安装有nginx[root@CENTOS7-TEST1 sbin]# find -name nginx如果系统已经安">
 
 
 
@@ -183,13 +180,13 @@
 
 
 
-  <link rel="canonical" href="http://github.lushunde.com/2018/03/17/github-pages-域名绑定/"/>
+  <link rel="canonical" href="http://github.lushunde.com/2018/06/13/centos7-安装-nginx-TCP-HTTP/"/>
 
 
 
 
 
-  <title>Github Pages  域名绑定（二） | 十四心</title>
+  <title>Centos7 安装 Nginx TCP HTTP | 十四心</title>
   
 
 
@@ -391,7 +388,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.lushunde.com/2018/03/17/github-pages-域名绑定/">
+    <link itemprop="mainEntityOfPage" href="http://github.lushunde.com/2018/06/13/centos7-安装-nginx-TCP-HTTP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鲁顺德">
@@ -408,7 +405,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Github Pages  域名绑定（二）</h1>
+          <h1 class="post-title" itemprop="name headline">Centos7 安装 Nginx TCP HTTP</h1>
         
 
         <div class="post-meta">
@@ -420,8 +417,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-17T23:22:39+08:00">
-                2018-03-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T19:55:38+08:00">
+                2018-06-13
               </time>
             
 
@@ -443,8 +440,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/github/" itemprop="url" rel="index">
-                    <span itemprop="name">github</span>
+                  <a href="/categories/centos7/" itemprop="url" rel="index">
+                    <span itemprop="name">centos7</span>
                   </a>
                 </span>
 
@@ -479,7 +476,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  211 字
+                  1,440 字
                 </span>
               
 
@@ -495,7 +492,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  7 分钟
                 </span>
               
             </div>
@@ -516,15 +513,37 @@
       
 
       
-        <h1 id="Next主题文档地址：官方文档"><a href="#Next主题文档地址：官方文档" class="headerlink" title="Next主题文档地址：官方文档"></a>Next主题文档地址：<a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">官方文档</a></h1><hr>
-<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ul>
-<li>lushunde321.github.io 已经可以正常显示 博客内容</li>
-<li>已经有一个域名 我的以 万网 lushunde.com 为例    <pre><code>注：cn域名需要备案，国际域名可以不用备案。备案比较麻烦，大约需要40天。
-</code></pre></li>
-</ul>
-<h2 id="项目添加CNAME文件-避免每次上传文件设置github的个人域名"><a href="#项目添加CNAME文件-避免每次上传文件设置github的个人域名" class="headerlink" title="项目添加CNAME文件(避免每次上传文件设置github的个人域名)"></a>项目添加CNAME文件(避免每次上传文件设置github的个人域名)</h2><p>不需要后缀，只需要名字CNAME即可，打开添加 自己的域名，我的使用二级域名  github.lushunde.com<br>文件放置位置  ..\Hexo\source 文件夹下<br><img src="http://githubimg.lushunde.com/2018-03-18_030528.jpg" alt="文件位置图片"></p>
-<h2 id="添加域名解析"><a href="#添加域名解析" class="headerlink" title="添加域名解析"></a>添加域名解析</h2><p> 登录到自己的域名供应商，我的万网<br>        解析域名 添加一条规则，CNAME规则，具体如下图：<br><img src="http://githubimg.lushunde.com/2018-01-23_001701.png" alt="这里写图片描述"><br>点击确定后大约1分钟后即可通过二级自定义域名访问github pages中的blog了。</p>
-
+        <p>nginx 正常安装 仅支持 http和https的负载均衡和反向代理 相关文档：</p>
+<blockquote>
+<p>由于现在需要使用TCP的负载均衡和反向代理功能，所以特别记录了这篇安装文档，本文中 TCP 模块添加在其中</p>
+</blockquote>
+<h1 id="CentOS-7-下安装-Nginx"><a href="#CentOS-7-下安装-Nginx" class="headerlink" title="CentOS 7 下安装 Nginx"></a>CentOS 7 下安装 Nginx</h1><h2 id="查看是否安装Nginx"><a href="#查看是否安装Nginx" class="headerlink" title="查看是否安装Nginx"></a>查看是否安装Nginx</h2><p><strong>安装之前，最好检查一下是否已经安装有nginx</strong><br><code>[root@CENTOS7-TEST1 sbin]# find -name nginx</code><br><strong>如果系统已经安装了nginx，那么就先卸载如果系统已经安装了nginx，那么就先卸载</strong><br><code>[root@CENTOS7-TEST1 /]# yum remove nginx</code></p>
+<h2 id="安装所需环境"><a href="#安装所需环境" class="headerlink" title="安装所需环境"></a>安装所需环境</h2><p>Nginx 是 C语言 开发，建议在 Linux 上运行，当然，也可以安装 Windows 版本，本篇则使用 CentOS 7 作为安装环境。</p>
+<h3 id="gcc-安装"><a href="#gcc-安装" class="headerlink" title="gcc 安装"></a>gcc 安装</h3><p>安装 nginx 需要先将官网下载的源码进行编译，编译依赖 gcc 环境，如果没有 gcc 环境，则需要安装：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 nginx]# yum install gcc-c++</span><br></pre></td></tr></table></figure></p>
+<h3 id="PCRE-pcre-devel-安装"><a href="#PCRE-pcre-devel-安装" class="headerlink" title="PCRE pcre-devel 安装"></a>PCRE pcre-devel 安装</h3><blockquote>
+<p>PCRE(Perl Compatible Regular Expressions) 是一个Perl库，包括 perl 兼容的正则表达式库。nginx 的 http 模块使用 pcre 来解析正则表达式，所以需要在 linux 上安装 pcre 库，pcre-devel 是使用 pcre 开发的一个二次开发库。nginx也需要此库。命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 nginx]# yum install -y pcre pcre-devel</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="zlib-安装"><a href="#zlib-安装" class="headerlink" title="zlib 安装"></a>zlib 安装</h3><p>zlib 库提供了很多种压缩和解压缩的方式， nginx 使用 zlib 对 http 包的内容进行 gzip ，所以需要在 Centos 上安装 zlib 库。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 nginx]# yum install -y zlib zlib-devel</span><br></pre></td></tr></table></figure></p>
+<h3 id="OpenSSL-安装"><a href="#OpenSSL-安装" class="headerlink" title="OpenSSL 安装"></a>OpenSSL 安装</h3><p>OpenSSL 是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及 SSL 协议，并提供丰富的应用程序供测试或其它目的使用。<br>nginx 不仅支持 http 协议，还支持 https（即在ssl协议上传输http），所以需要在 Centos 安装 OpenSSL 库。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 nginx]# yum install -y openssl openssl-devel</span><br></pre></td></tr></table></figure></p>
+<p>注：yum -y install gcc gcc-c++ automake pcre pcre-devel zlib zlib-devel openssl openssl-devel        ## 一次性安装以上依赖包  </p>
+<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><h3 id="使用wget命令下载（推荐）。"><a href="#使用wget命令下载（推荐）。" class="headerlink" title="使用wget命令下载（推荐）。"></a>使用wget命令下载（推荐）。</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 nginx]# wget https://nginx.org/download/nginx-1.13.9.tar.gz</span><br></pre></td></tr></table></figure>
+<p>我下载的是1.13.9版本，这个是目前的稳定版。</p>
+<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 nginx]# tar -zxvf nginx-1.13.9.tar.gz  &amp;&amp; cd nginx-1.13.9</span><br></pre></td></tr></table></figure>
+<h3 id="配置安装-a、b两种选择其一即可"><a href="#配置安装-a、b两种选择其一即可" class="headerlink" title="配置安装 a、b两种选择其一即可"></a>配置安装 a、b两种选择其一即可</h3><h4 id="a-配置-默认安装（只支持http和https）"><a href="#a-配置-默认安装（只支持http和https）" class="headerlink" title="a 配置 默认安装（只支持http和https）"></a>a 配置 默认安装（只支持http和https）</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 nginx-1.13.9]# ./configure</span><br></pre></td></tr></table></figure>
+<h4 id="b-配置-添加额外的-TCP-模块"><a href="#b-配置-添加额外的-TCP-模块" class="headerlink" title="b 配置 添加额外的 TCP 模块"></a>b 配置 添加额外的 TCP 模块</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 nginx-1.13.9]# ./configure --with-stream --with-stream_ssl_module --with-http_stub_status_module</span><br></pre></td></tr></table></figure>
+<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 nginx]# make</span><br><span class="line">[root@CENTOS7-TEST1 nginx]# make install</span><br></pre></td></tr></table></figure>
+<p><strong>查找安装路径：</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 nginx-1.13.9]# whereis nginx</span><br><span class="line">nginx: /usr/local/nginx</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置文件-对应上面配置安装来配置文件"><a href="#配置文件-对应上面配置安装来配置文件" class="headerlink" title="配置文件 对应上面配置安装来配置文件"></a>配置文件 对应上面配置安装来配置文件</h2><h3 id="a-默认安装不支持TCP的配置文件不需要修改，原配置文件即可"><a href="#a-默认安装不支持TCP的配置文件不需要修改，原配置文件即可" class="headerlink" title="a 默认安装不支持TCP的配置文件不需要修改，原配置文件即可"></a>a 默认安装不支持TCP的配置文件不需要修改，原配置文件即可</h3><h3 id="b-支持TCP的配置文件配置，添加TCP"><a href="#b-支持TCP的配置文件配置，添加TCP" class="headerlink" title="b 支持TCP的配置文件配置，添加TCP"></a>b 支持TCP的配置文件配置，添加TCP</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">stream &#123;                  ## stream模块，就跟http模块一样  </span><br><span class="line">        		server &#123;             ## 里面乐意有多个监听服务</span><br><span class="line">	          	listen 12345;  </span><br><span class="line">          			proxy_pass 192.168.1.2:3306;  </span><br><span class="line">        		&#125;  </span><br><span class="line">       	 	server &#123;  </span><br><span class="line">          			listen 12346;  </span><br><span class="line">          			proxy_pass 192.168.9.1.3:3306;  </span><br><span class="line">        		&#125;  </span><br><span class="line">        		## 在tcp请求代理中，也是可以使用负载均衡的upstream的  </span><br><span class="line">        		upstream mysql&#123;  </span><br><span class="line">            		server 192.168.9.3:3306;  </span><br><span class="line">            		server 192.168.9.4:3306;  </span><br><span class="line">        		&#125;  </span><br><span class="line">        		server &#123;  </span><br><span class="line">           	 		listen 33333;  </span><br><span class="line">           	 		proxy_pass myqsl;  </span><br><span class="line">        		&#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="启动、停止nginx"><a href="#启动、停止nginx" class="headerlink" title="启动、停止nginx"></a>启动、停止nginx</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 nginx-1.13.9]# cd /usr/local/nginx/sbin/</span><br><span class="line">[root@CENTOS7-TEST1 sbin]# ./nginx</span><br><span class="line">[root@CENTOS7-TEST1 sbin]# ./nginx -s stop 	 #此方式相当于先查出nginx进程id再使用kill命令强制杀掉进程。</span><br><span class="line">[root@CENTOS7-TEST1 sbin]# ./nginx</span><br><span class="line">[root@CENTOS7-TEST1 sbin]# ./nginx -s quit  	 #此方式停止步骤是待nginx进程处理任务完毕进行停止</span><br><span class="line">[root@CENTOS7-TEST1 sbin]# ./nginx</span><br><span class="line">[root@CENTOS7-TEST1 sbin]# ./nginx -s reload</span><br><span class="line">[root@CENTOS7-TEST1 sbin]# ps aux|grep nginx  		#查询nginx进程</span><br><span class="line">	root       3848  0.0  0.0  20496  1308 ?        Ss   11:19   0:00 nginx: master process ./nginx</span><br><span class="line">	nobody     3851  0.0  0.0  20948  1440 ?        S    11:19   0:00 nginx: worker process</span><br><span class="line">	root       3853  0.0  0.0 112660   972 pts/0    S+   11:20   0:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure>
+<h2 id="开机自启动"><a href="#开机自启动" class="headerlink" title="开机自启动"></a>开机自启动</h2><h3 id="即在rc-local增加启动代码就可以了。"><a href="#即在rc-local增加启动代码就可以了。" class="headerlink" title="即在rc.local增加启动代码就可以了。"></a>即在rc.local增加启动代码就可以了。</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 sbin]# vi /etc/rc.local</span><br><span class="line"> 增加一行 /usr/local/nginx/sbin/nginx</span><br></pre></td></tr></table></figure>
+<h3 id="设置执行权限：-根据需求"><a href="#设置执行权限：-根据需求" class="headerlink" title="设置执行权限：[根据需求]"></a>设置执行权限：[根据需求]</h3><p><code>[root@CENTOS7-TEST1 sbin]# chmod 755 rc.local</code></p>
+<h2 id="添加Nginx到系统服务"><a href="#添加Nginx到系统服务" class="headerlink" title="添加Nginx到系统服务"></a>添加Nginx到系统服务</h2><h3 id="创建nginx启动命令脚本"><a href="#创建nginx启动命令脚本" class="headerlink" title="创建nginx启动命令脚本"></a>创建nginx启动命令脚本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# vi /etc/init.d/nginx</span><br></pre></td></tr></table></figure>
+<h3 id="插入以下内容-注意修改PATH和NAME字段-匹配自己的安装路径"><a href="#插入以下内容-注意修改PATH和NAME字段-匹配自己的安装路径" class="headerlink" title="插入以下内容, 注意修改PATH和NAME字段, 匹配自己的安装路径"></a>插入以下内容, 注意修改PATH和NAME字段, 匹配自己的安装路径</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">! /bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> chkconfig: - 85 15</span></span><br><span class="line">PATH=/usr/local/nginx</span><br><span class="line">DESC="nginx daemon"</span><br><span class="line">NAME=nginx</span><br><span class="line">DAEMON=$PATH/sbin/$NAME</span><br><span class="line">CONFIGFILE=$PATH/conf/$NAME.conf</span><br><span class="line">PIDFILE=$PATH/logs/$NAME.pid</span><br><span class="line">SCRIPTNAME=/etc/init.d/$NAME</span><br><span class="line">set -e</span><br><span class="line">[ -x "$DAEMON" ] || exit 0</span><br><span class="line">do_start() &#123;</span><br><span class="line"><span class="meta">	$</span><span class="bash">DAEMON -c <span class="variable">$CONFIGFILE</span> || <span class="built_in">echo</span> -n <span class="string">"nginx already running"</span></span></span><br><span class="line">&#125;</span><br><span class="line">do_stop() &#123;</span><br><span class="line"><span class="meta">	$</span><span class="bash">DAEMON -s stop || <span class="built_in">echo</span> -n <span class="string">"nginx not running"</span></span></span><br><span class="line">&#125;</span><br><span class="line">do_reload() &#123;</span><br><span class="line"><span class="meta">	$</span><span class="bash">DAEMON -s reload || <span class="built_in">echo</span> -n <span class="string">"nginx can't reload"</span></span></span><br><span class="line">&#125;</span><br><span class="line">case "$1" in</span><br><span class="line">start)</span><br><span class="line">echo -n "Starting $DESC: $NAME"</span><br><span class="line">do_start</span><br><span class="line">echo "."</span><br><span class="line">;;</span><br><span class="line">stop)</span><br><span class="line">echo -n "Stopping $DESC: $NAME"</span><br><span class="line">do_stop</span><br><span class="line">echo "."</span><br><span class="line">;;</span><br><span class="line">reload|graceful)</span><br><span class="line">echo -n "Reloading $DESC configuration..."</span><br><span class="line">do_reload</span><br><span class="line">echo "."</span><br><span class="line">;;</span><br><span class="line">restart)</span><br><span class="line">echo -n "Restarting $DESC: $NAME"</span><br><span class="line">do_stop</span><br><span class="line">do_start</span><br><span class="line">echo "."</span><br><span class="line">;;</span><br><span class="line">*)</span><br><span class="line">echo "Usage: $SCRIPTNAME &#123;start|stop|reload|restart&#125;" &gt;&amp;2</span><br><span class="line">exit 3</span><br><span class="line">;;</span><br><span class="line">esac</span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+<h3 id="设置执行权限"><a href="#设置执行权限" class="headerlink" title="设置执行权限"></a>设置执行权限</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# chmod a+x /etc/init.d/nginx</span><br></pre></td></tr></table></figure>
+<h3 id="注册成服务"><a href="#注册成服务" class="headerlink" title="注册成服务"></a>注册成服务</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# chkconfig --add nginx</span><br></pre></td></tr></table></figure>
+<h3 id="设置开机启动"><a href="#设置开机启动" class="headerlink" title="设置开机启动"></a>设置开机启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# chkconfig nginx on</span><br></pre></td></tr></table></figure>
+<h3 id="重启-查看nginx服务是否自动启动"><a href="#重启-查看nginx服务是否自动启动" class="headerlink" title="重启, 查看nginx服务是否自动启动"></a>重启, 查看nginx服务是否自动启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# shutdown -h 0 -rn</span><br><span class="line">[root@CENTOS7-TEST1 /]# netstat -apn|grep nginx</span><br></pre></td></tr></table></figure>
+<h3 id="对nginx服务执行停止-启动-重新读取配置文件操作"><a href="#对nginx服务执行停止-启动-重新读取配置文件操作" class="headerlink" title="对nginx服务执行停止/启动/重新读取配置文件操作"></a>对nginx服务执行停止/启动/重新读取配置文件操作</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">启动nginx服务</span></span><br><span class="line">systemctl start nginx.service</span><br><span class="line"><span class="meta">#</span><span class="bash">停止nginx服务</span></span><br><span class="line">systemctl stop nginx.service</span><br><span class="line"><span class="meta">#</span><span class="bash">重启nginx服务</span></span><br><span class="line">systemctl restart nginx.service</span><br><span class="line"><span class="meta">#</span><span class="bash">重新读取nginx配置(这个最常用, 不用停止nginx服务就能使修改的配置生效)</span></span><br><span class="line">systemctl reload nginx.service</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -585,7 +604,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i> hexo</a>
+            <a href="/tags/nginx/" rel="tag"><i class="fa fa-tag"></i> nginx</a>
           
         </div>
       
@@ -598,8 +617,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/15/Centos1708系统安装/" rel="next" title="Centos1708系统安装">
-                <i class="fa fa-chevron-left"></i> Centos1708系统安装
+              <a href="/2018/06/13/HTTP/" rel="next" title="HTTP'">
+                <i class="fa fa-chevron-left"></i> HTTP'
               </a>
             
           </div>
@@ -607,10 +626,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/18/Hexo-下载安装Next主题/" rel="prev" title="Hexo 下载安装Next主题（三）">
-                Hexo 下载安装Next主题（三） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -818,7 +833,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Next主题文档地址：官方文档"><span class="nav-number">1.</span> <span class="nav-text">Next主题文档地址：官方文档</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前提条件"><span class="nav-number">1.1.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目添加CNAME文件-避免每次上传文件设置github的个人域名"><span class="nav-number">1.2.</span> <span class="nav-text">项目添加CNAME文件(避免每次上传文件设置github的个人域名)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加域名解析"><span class="nav-number">1.3.</span> <span class="nav-text">添加域名解析</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CentOS-7-下安装-Nginx"><span class="nav-number">1.</span> <span class="nav-text">CentOS 7 下安装 Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看是否安装Nginx"><span class="nav-number">1.1.</span> <span class="nav-text">查看是否安装Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装所需环境"><span class="nav-number">1.2.</span> <span class="nav-text">安装所需环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gcc-安装"><span class="nav-number">1.2.1.</span> <span class="nav-text">gcc 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCRE-pcre-devel-安装"><span class="nav-number">1.2.2.</span> <span class="nav-text">PCRE pcre-devel 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zlib-安装"><span class="nav-number">1.2.3.</span> <span class="nav-text">zlib 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenSSL-安装"><span class="nav-number">1.2.4.</span> <span class="nav-text">OpenSSL 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Nginx"><span class="nav-number">1.3.</span> <span class="nav-text">安装Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用wget命令下载（推荐）。"><span class="nav-number">1.3.1.</span> <span class="nav-text">使用wget命令下载（推荐）。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压"><span class="nav-number">1.3.2.</span> <span class="nav-text">解压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置安装-a、b两种选择其一即可"><span class="nav-number">1.3.3.</span> <span class="nav-text">配置安装 a、b两种选择其一即可</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-配置-默认安装（只支持http和https）"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">a 配置 默认安装（只支持http和https）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-配置-添加额外的-TCP-模块"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">b 配置 添加额外的 TCP 模块</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译安装"><span class="nav-number">1.3.4.</span> <span class="nav-text">编译安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件-对应上面配置安装来配置文件"><span class="nav-number">1.4.</span> <span class="nav-text">配置文件 对应上面配置安装来配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-默认安装不支持TCP的配置文件不需要修改，原配置文件即可"><span class="nav-number">1.4.1.</span> <span class="nav-text">a 默认安装不支持TCP的配置文件不需要修改，原配置文件即可</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-支持TCP的配置文件配置，添加TCP"><span class="nav-number">1.4.2.</span> <span class="nav-text">b 支持TCP的配置文件配置，添加TCP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动、停止nginx"><span class="nav-number">1.5.</span> <span class="nav-text">启动、停止nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开机自启动"><span class="nav-number">1.6.</span> <span class="nav-text">开机自启动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#即在rc-local增加启动代码就可以了。"><span class="nav-number">1.6.1.</span> <span class="nav-text">即在rc.local增加启动代码就可以了。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置执行权限：-根据需求"><span class="nav-number">1.6.2.</span> <span class="nav-text">设置执行权限：[根据需求]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加Nginx到系统服务"><span class="nav-number">1.7.</span> <span class="nav-text">添加Nginx到系统服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建nginx启动命令脚本"><span class="nav-number">1.7.1.</span> <span class="nav-text">创建nginx启动命令脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入以下内容-注意修改PATH和NAME字段-匹配自己的安装路径"><span class="nav-number">1.7.2.</span> <span class="nav-text">插入以下内容, 注意修改PATH和NAME字段, 匹配自己的安装路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置执行权限"><span class="nav-number">1.7.3.</span> <span class="nav-text">设置执行权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册成服务"><span class="nav-number">1.7.4.</span> <span class="nav-text">注册成服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置开机启动"><span class="nav-number">1.7.5.</span> <span class="nav-text">设置开机启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启-查看nginx服务是否自动启动"><span class="nav-number">1.7.6.</span> <span class="nav-text">重启, 查看nginx服务是否自动启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对nginx服务执行停止-启动-重新读取配置文件操作"><span class="nav-number">1.7.7.</span> <span class="nav-text">对nginx服务执行停止/启动/重新读取配置文件操作</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
