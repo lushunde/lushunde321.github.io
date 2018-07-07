@@ -3,7 +3,7 @@
   
     
     <entry>
-      <title><![CDATA[Java个版本新特性介绍]]></title>
+      <title><![CDATA[JDK各版本新特性介绍]]></title>
       <url>/2018/07/08/JDK%E5%90%84%E7%89%88%E6%9C%AC%E7%9A%84%E7%89%B9%E6%96%B0/</url>
       <content type="html"><![CDATA[<h1 id="JDK-1-0"><a href="#JDK-1-0" class="headerlink" title="JDK 1.0"></a>JDK 1.0</h1><p>开发代号为Oak（橡树），于1996-01-23发行。</p>
 <h1 id="JDK-1-1"><a href="#JDK-1-1" class="headerlink" title="JDK 1.1"></a>JDK 1.1</h1><p>于1997-02-19发行。<br><strong>引入的新特性包括：</strong><br>引入JDBC（Java Database Connectivity）；<br>支持内部类；<br>引入Java Bean；<br>引入RMI（Remote Method Invocation）；<br>引入反射（仅用于内省）。</p>
