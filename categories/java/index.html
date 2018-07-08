@@ -142,7 +142,7 @@
 <meta name="description" content="未来不可预期，才会期待和精彩。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="十四心">
-<meta property="og:url" content="http://github.lushunde.com/categories/java/index.html">
+<meta property="og:url" content="http://github.lushunde.com/categories/JAVA/index.html">
 <meta property="og:site_name" content="十四心">
 <meta property="og:description" content="未来不可预期，才会期待和精彩。">
 <meta property="og:locale" content="zh-Hans">
@@ -178,13 +178,13 @@
 
 
 
-  <link rel="canonical" href="http://github.lushunde.com/categories/java/"/>
+  <link rel="canonical" href="http://github.lushunde.com/categories/JAVA/"/>
 
 
 
 
 
-  <title>分类: java | 十四心</title>
+  <title>分类: JAVA | 十四心</title>
   
 
 
@@ -379,7 +379,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>java<small>分类</small>
+        <h1>JAVA<small>分类</small>
         </h1>
       </div>
 
@@ -391,37 +391,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/07/08/JDK各版本的特新/" itemprop="url">
+            <a class="post-title-link" href="/2018/04/02/Quartz使用总结/" itemprop="url">
               
-                <span itemprop="name">JDK各版本新特性介绍</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-08T00:48:20+08:00"
-              content="2018-07-08" >
-          07-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/02/logback的使用和logback-xml详解/" itemprop="url">
-              
-                <span itemprop="name">logback的使用和logback.xml详解</span>
+                <span itemprop="name">Quartz使用总结</span>
               
             </a>
         
@@ -429,7 +401,7 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-02T20:52:46+08:00"
+              datetime="2018-04-02T23:16:09+08:00"
               content="2018-04-02" >
           04-02
         </time>
@@ -496,7 +468,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -507,7 +479,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -518,7 +490,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -613,7 +585,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.9k</span>
+    <span title="Site words total count">36.6k</span>
   
 </div>
 -->
@@ -635,7 +607,7 @@
 
 <div class="theme-info">
   <div class="with-love"><i class="fa fa-file-word-o"></i></div>
-  <span class="post-count">博客全站共35.9k字</span>
+  <span class="post-count">博客全站共36.6k字</span>
 </div>
         
 <div class="busuanzi-count">
@@ -1098,6 +1070,54 @@
 
           proceedsearch();
         }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+  }
       });
     }
 
