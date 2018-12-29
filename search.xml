@@ -3,13 +3,106 @@
   
     
     <entry>
+      <title><![CDATA[Centos7安装oracle]]></title>
+      <url>/2018/09/29/centos7%E5%AE%89%E8%A3%85oracle/</url>
+      <content type="html"><![CDATA[<p>yum install gcc gcc-c++ glibc glibc-devel glibc-headers ksh libaio libaio-devel libgcc libstdc++ libstdc++-devel make sysstat unixODBC unixODBC-devel zlib-devel unzip compat-libcap1 compat-libstdc++-33</p>
+<p>作者：梨捉阳笆<br>链接：<a href="https://www.jianshu.com/p/36a78274a00e" target="_blank" rel="noopener">https://www.jianshu.com/p/36a78274a00e</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Centos7安装rabbitmq服务]]></title>
+      <url>/2018/09/29/centos7%E5%AE%89%E8%A3%85rabbitmq%E6%9C%8D%E5%8A%A1/</url>
+      <content type="html"></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[MySQL单机版安装（yum）]]></title>
+      <url>/2018/09/13/MySQL%E5%8D%95%E6%9C%BA%E7%89%88%E5%AE%89%E8%A3%85%EF%BC%88yum%EF%BC%89/</url>
+      <content type="html"><![CDATA[<h1 id="CentOS7-64位下MySQL5-7安装与配置（YUM）"><a href="#CentOS7-64位下MySQL5-7安装与配置（YUM）" class="headerlink" title="CentOS7 64位下MySQL5.7安装与配置（YUM）"></a>CentOS7 64位下MySQL5.7安装与配置（YUM）</h1><blockquote>
+<p>安装环境：Centos7(1708)  64位 MINI版，安装MySQL5.7<br>配置YUM源<br>在MySQL官网中下载YUM源rpm安装包：<a href="http://dev.mysql.com/downloads/repo/yum/" target="_blank" rel="noopener">http://dev.mysql.com/downloads/repo/yum/</a> </p>
+</blockquote>
+<h2 id="下载mysql源安装包"><a href="#下载mysql源安装包" class="headerlink" title="下载mysql源安装包"></a>下载mysql源安装包</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@redis_cluster3 ~]# cd /home/soft/</span><br><span class="line">[root@redis_cluster3 ~]# # wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm</span><br></pre></td></tr></table></figure>
+<h2 id="安装mysql源"><a href="#安装mysql源" class="headerlink" title="安装mysql源"></a>安装mysql源</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 mysql]# yum localinstall mysql57-community-release-el7-11.noarch.rpm</span><br></pre></td></tr></table></figure>
+<h2 id="检查mysql源是否安装成功"><a href="#检查mysql源是否安装成功" class="headerlink" title="检查mysql源是否安装成功"></a>检查mysql源是否安装成功</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 mysql]# yum repolist enabled | grep &quot;mysql.*-community.*&quot;</span><br><span class="line">	Repository base is listed more than once in the configuration</span><br><span class="line">	Repository updates is listed more than once in the configuration</span><br><span class="line">	Repository extras is listed more than once in the configuration</span><br><span class="line">	Repository centosplus is listed more than once in the configuration</span><br><span class="line">	mysql-connectors-community/x86_64       MySQL Connectors Community           45</span><br><span class="line">	mysql-tools-community/x86_64            MySQL Tools Community                59</span><br><span class="line">	mysql57-community/x86_64                MySQL 5.7 Community Server          247</span><br></pre></td></tr></table></figure>
+<p><em>看到上图所示表示安装成功。</em> </p>
+<h2 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 mysql]# yum install mysql-community-server</span><br></pre></td></tr></table></figure>
+<h2 id="启动MySQL服务"><a href="#启动MySQL服务" class="headerlink" title="启动MySQL服务"></a>启动MySQL服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   [root@CENTOS7-TEST1 mysql]# systemctl status mysqld</span><br><span class="line">[root@CENTOS7-TEST1 mysql]# systemctl start mysqld</span><br><span class="line">[root@CENTOS7-TEST1 mysql]# systemctl stop mysqld</span><br></pre></td></tr></table></figure>
+<h2 id="开启、关闭开机启动"><a href="#开启、关闭开机启动" class="headerlink" title="开启、关闭开机启动"></a>开启、关闭开机启动</h2><h3 id="设置开机自启"><a href="#设置开机自启" class="headerlink" title="设置开机自启"></a>设置开机自启</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 mysql]# systemctl enable mysqld</span><br><span class="line">[root@CENTOS7-TEST1 mysql]# systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+<h3 id="关闭开机自启"><a href="#关闭开机自启" class="headerlink" title="关闭开机自启"></a>关闭开机自启</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">   [root@CENTOS7-TEST1 mysql]# systemctl list-unit-files</span><br><span class="line">	mysqld.service                                enabled </span><br><span class="line">[root@CENTOS7-TEST1 mysql]# systemctl disable mysqld</span><br><span class="line">	Removed symlink /etc/systemd/system/multi-user.target.wants/mysqld.service.</span><br></pre></td></tr></table></figure>
+<h2 id="修改root本地登录密码"><a href="#修改root本地登录密码" class="headerlink" title="修改root本地登录密码"></a>修改root本地登录密码</h2><pre><code>mysql安装后密码，在/var/log/mysqld.log文件中给root生成了一个默认密码。通过下面的方式找到root默认密码，然后登录mysql进行修改：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  [root@CENTOS7-TEST1 ~]# grep &apos;temporary password&apos; /var/log/mysqld.log</span><br><span class="line">2018-03-11T19:46:51.452378Z 1 [Note] A temporary password is generated for root@localhost: aufAL9.gXgeU</span><br></pre></td></tr></table></figure>
+<h3 id="登录mysql后设置新密码"><a href="#登录mysql后设置新密码" class="headerlink" title="登录mysql后设置新密码"></a>登录mysql后设置新密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@redis_cluster3 sbin]# mysql -u root -p aufAL9.gXgeU</span><br><span class="line">	mysql&gt; ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;root&apos;;</span><br><span class="line">		ERROR 2006 (HY000): MySQL server has gone away</span><br><span class="line">		No connection. Trying to reconnect...</span><br><span class="line">		ERROR 1045 (28000): Access denied for user &apos;root&apos;@&apos;localhost&apos; (using password: YES)</span><br><span class="line">		ERROR: </span><br><span class="line">		Can&apos;t connect to the server</span><br></pre></td></tr></table></figure>
+<pre><code>mysql5.7默认安装了密码安全检查插件（validate_password），默认密码检查策略要求密码必须包含：大小写字母、数字和特殊符号，并且长度不能少于8位。否则会提示ERROR 1819 (HY000): Your password does not satisfy the current policy requirements错误
+</code></pre><h3 id="修改密码策略"><a href="#修改密码策略" class="headerlink" title="修改密码策略"></a>修改密码策略</h3><pre><code>在/etc/my.cnf文件添加validate_password_policy配置，指定密码策略
+如果不需要密码策略，添加my.cnf文件中添加如下配置禁用即可：
+    validate_password = off
+重新启动mysql服务使配置生效：
+[root@CENTOS7-TEST1 ~]# vi /etc/my.cnf
+[root@CENTOS7-TEST1 ~]# systemctl restart mysqld
+</code></pre><h3 id="再次登录后设置密码"><a href="#再次登录后设置密码" class="headerlink" title="再次登录后设置密码"></a>再次登录后设置密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;root&apos;;</span><br></pre></td></tr></table></figure>
+<pre><code>通过msyql环境变量可以查看密码策略的相关信息：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">   mysql&gt; show variables like &apos;%password%&apos;;</span><br><span class="line">+---------------------------------------+--------+</span><br><span class="line">| Variable_name                         | Value  |</span><br><span class="line">+---------------------------------------+--------+</span><br><span class="line">| default_password_lifetime             | 0      |</span><br><span class="line">| disconnect_on_expired_password        | ON     |</span><br><span class="line">| log_builtin_as_identified_by_password | OFF    |</span><br><span class="line">| mysql_native_password_proxy_users     | OFF    |</span><br><span class="line">| old_passwords                         | 0      |</span><br><span class="line">| report_password                       |        |</span><br><span class="line">| sha256_password_proxy_users           | OFF    |</span><br><span class="line">| validate_password_check_user_name     | OFF    |</span><br><span class="line">| validate_password_dictionary_file     |        |</span><br><span class="line">| validate_password_length              | 8      |</span><br><span class="line">| validate_password_mixed_case_count    | 1      |</span><br><span class="line">| validate_password_number_count        | 1      |</span><br><span class="line">| validate_password_policy              | MEDIUM |</span><br><span class="line">| validate_password_special_char_count  | 1      |</span><br><span class="line">+---------------------------------------+--------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>validate_password_policy：密码策略，默认为MEDIUM策略<br>validate_password_dictionary_file：密码策略文件，策略为STRONG才需要<br>validate_password_length：密码最少长度<br>validate_password_mixed_case_count：大小写字符长度，至少1个<br>validate_password_number_count ：数字至少1个<br>validate_password_special_char_count：特殊字符至少1个  上述参数是默认策略MEDIUM的密码检查规则。</p>
+</blockquote>
+<h2 id="添加远程登录用户"><a href="#添加远程登录用户" class="headerlink" title="添加远程登录用户"></a>添加远程登录用户</h2><pre><code>默认只允许root帐户在本地登录，如果要在其它机器上连接mysql，必须修改root允许远程连接，或者添加一个允许远程连接的帐户，为了安全起见，我添加一个新的帐户：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;%&apos; IDENTIFIED BY &apos;root&apos; WITH GRANT OPTION;</span><br></pre></td></tr></table></figure>
+<h2 id="配置默认编码为utf8"><a href="#配置默认编码为utf8" class="headerlink" title="配置默认编码为utf8"></a>配置默认编码为utf8</h2><p>修改/etc/my.cnf配置文件，在[mysqld]下添加编码配置，如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">character_set_server=utf8</span><br><span class="line">init_connect=&apos;SET NAMES utf8&apos;</span><br></pre></td></tr></table></figure></p>
+<p>重新启动mysql服务，查看数据库默认编码如下所示：</p>
+<h2 id="添加-删除新用户、授权"><a href="#添加-删除新用户、授权" class="headerlink" title="添加 删除新用户、授权"></a>添加 删除新用户、授权</h2><blockquote>
+<p>创建数据库<br>    1.create database [数据库名称] default character set utf8 collate utf8_general_ci;<br>　　        采用create schema和create database创建数据库的效果一样。 创建用户<br>    2.create user ‘[用户名称]’@’%’ identified by ‘[用户密码]’;<br>　　        %：匹配所有主机，该地方还可以设置成‘localhost’，代表只能本地访问，例如root账户默认为‘localhost‘ 用户授权数据库<br>    3.grant select,insert,update,delete,create on [数据库名称].<em> to [用户名称];
+　　        </em>代表整个数据库 立即启用修改<br>    4.flush  privileges ; 取消用户所有数据库（表）的所有权限<br>    5.revoke all on <em>.</em> from tester; 删除用户<br>    6.delete from mysql.user where user=’tester’; 删除数据库<br>    7.drop database [schema名称|数据库名称];</p>
+</blockquote>
+<h2 id="默认配置文件路径："><a href="#默认配置文件路径：" class="headerlink" title="默认配置文件路径："></a>默认配置文件路径：</h2><blockquote>
+<p>配置文件：/etc/my.cnf<br>日志文件：/var/log//var/log/mysqld.log<br>服务启动脚本：/usr/lib/systemd/system/mysqld.service<br>socket文件：/var/run/mysqld/mysqld.pid</p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> centos7 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> redis </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Centos7安装redis单机版]]></title>
       <url>/2018/09/12/centos7%E5%AE%89%E8%A3%85redis%E5%8D%95%E6%9C%BA%E7%89%88/</url>
-      <content type="html"><![CDATA[<h1 id="centos7安装redis单机版"><a href="#centos7安装redis单机版" class="headerlink" title="centos7安装redis单机版"></a>centos7安装redis单机版</h1><p>目标软件：本地安装redis，然后使用局域网内任何机器可以访问redis和后台以守护进程运行，设置密码root。</p>
+      <content type="html"><![CDATA[<p>————-方法一—————-</p>
+<h1 id="centos7安装redis单机版（指定目录自己安装）"><a href="#centos7安装redis单机版（指定目录自己安装）" class="headerlink" title="centos7安装redis单机版（指定目录自己安装）"></a>centos7安装redis单机版（指定目录自己安装）</h1><p>目标软件：本地安装redis，然后使用局域网内任何机器可以访问redis和后台以守护进程运行，设置密码root。</p>
 <h2 id="安装gcc编译软件"><a href="#安装gcc编译软件" class="headerlink" title="安装gcc编译软件"></a>安装gcc编译软件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@redis_cluster3 ~]# cd /home/soft</span><br><span class="line">[root@redis_cluster3 ~]# wget http://download.redis.io/releases/redis-4.0.10.tar.gz</span><br><span class="line">[root@redis_cluster3 ~]# tar xzf redis-4.0.10.tar.gz</span><br><span class="line">[root@redis_cluster3 ~]# mv ./redis-4.0.10 ../work</span><br><span class="line">[root@redis_cluster3 ~]# cd ../work/redis-4.0.10</span><br><span class="line">[root@redis_cluster3 ~]# make</span><br><span class="line">[root@redis_cluster3 ~]# make install</span><br></pre></td></tr></table></figure>
 <h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>配置文件修改：[root@redis_cluster3 ~]# vi redis.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bind 127.0.0.1 192.168.187.7		#使用本地和局域网连接</span><br><span class="line">protected-mode no			        #关闭保护机制，任何ip可以连接</span><br><span class="line">daemonize yes			            #后台守护进程运行</span><br><span class="line">requirepass root			        #设置redis密码</span><br></pre></td></tr></table></figure></p>
 <h2 id="启动redis服务"><a href="#启动redis服务" class="headerlink" title="启动redis服务"></a>启动redis服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@redis_cluster3 redis-4.0.10]# ./src/redis-server redis.conf</span><br></pre></td></tr></table></figure>
 <h2 id="连接服务"><a href="#连接服务" class="headerlink" title="连接服务"></a>连接服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@redis_cluster3 src]# ./redis-cli -h 192.168.187.7 -p 6379 -a &quot;root&quot;</span><br></pre></td></tr></table></figure>
+<p>————方法二———–</p>
+<h1 id="命令自动安装（简单）"><a href="#命令自动安装（简单）" class="headerlink" title="命令自动安装（简单）"></a>命令自动安装（简单）</h1><h2 id="redis安装-（因为官方yum和阿里yum都没有redis的安装包，故只能通过fedora的epel仓库来安装）"><a href="#redis安装-（因为官方yum和阿里yum都没有redis的安装包，故只能通过fedora的epel仓库来安装）" class="headerlink" title="redis安装  （因为官方yum和阿里yum都没有redis的安装包，故只能通过fedora的epel仓库来安装）"></a>redis安装  （因为官方yum和阿里yum都没有redis的安装包，故只能通过fedora的epel仓库来安装）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-openfalcon1 golang]# yum install -y epel-release</span><br></pre></td></tr></table></figure>
+<h2 id="安装redis"><a href="#安装redis" class="headerlink" title="安装redis"></a>安装redis</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-openfalcon1 golang]# yum install redis -y</span><br></pre></td></tr></table></figure>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-openfalcon1 golang]# systemctl start redis</span><br></pre></td></tr></table></figure>
+<h3 id="设置redis开机自启动"><a href="#设置redis开机自启动" class="headerlink" title="设置redis开机自启动"></a>设置redis开机自启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-openfalcon1 golang]# systemctl enable redis</span><br></pre></td></tr></table></figure>
+<h3 id="查看redis开机是否自启动"><a href="#查看redis开机是否自启动" class="headerlink" title="查看redis开机是否自启动"></a>查看redis开机是否自启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-openfalcon1 golang]# systemctl status redis</span><br></pre></td></tr></table></figure>
+<h2 id="修改配置文件，监听所有的IP地址"><a href="#修改配置文件，监听所有的IP地址" class="headerlink" title="修改配置文件，监听所有的IP地址"></a>修改配置文件，监听所有的IP地址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 etc]# vi /etc/redis.conf</span><br></pre></td></tr></table></figure>
+<pre><code>找到下面这一行
+ 使用 /bind 127.0.0.1
+查找 并注释
+#bind 127.0.0.1
+重启生效    
+systemctl restart redis
+</code></pre><h2 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h2><h3 id="yum方式安装的redis配置文件通常在-etc-redis-conf中，打开配置文件找到"><a href="#yum方式安装的redis配置文件通常在-etc-redis-conf中，打开配置文件找到" class="headerlink" title="yum方式安装的redis配置文件通常在/etc/redis.conf中，打开配置文件找到"></a>yum方式安装的redis配置文件通常在/etc/redis.conf中，打开配置文件找到</h3><pre><code>#requirepass foobared 
+</code></pre><h3 id="去掉行前的注释，并修改密码为所需的密码-保存文件"><a href="#去掉行前的注释，并修改密码为所需的密码-保存文件" class="headerlink" title="去掉行前的注释，并修改密码为所需的密码,保存文件"></a>去掉行前的注释，并修改密码为所需的密码,保存文件</h3><pre><code>requirepass 123456
+</code></pre><p><strong>重启redis完成</strong></p>
 ]]></content>
       
         <categories>

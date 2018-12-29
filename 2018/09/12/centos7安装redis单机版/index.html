@@ -139,18 +139,18 @@
 
 
 
-<meta name="description" content="centos7安装redis单机版目标软件：本地安装redis，然后使用局域网内任何机器可以访问redis和后台以守护进程运行，设置密码root。 安装gcc编译软件1234567[root@redis_cluster3 ~]# cd /home/soft[root@redis_cluster3 ~]# wget http://download.redis.io/releases/redis-4.">
+<meta name="description" content="————-方法一—————- centos7安装redis单机版（指定目录自己安装）目标软件：本地安装redis，然后使用局域网内任何机器可以访问redis和后台以守护进程运行，设置密码root。 安装gcc编译软件1234567[root@redis_cluster3 ~]# cd /home/soft[root@redis_cluster3 ~]# wget http://download.r">
 <meta name="keywords" content="redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Centos7安装redis单机版">
 <meta property="og:url" content="http://github.lushunde.com/2018/09/12/centos7安装redis单机版/index.html">
 <meta property="og:site_name" content="十四心">
-<meta property="og:description" content="centos7安装redis单机版目标软件：本地安装redis，然后使用局域网内任何机器可以访问redis和后台以守护进程运行，设置密码root。 安装gcc编译软件1234567[root@redis_cluster3 ~]# cd /home/soft[root@redis_cluster3 ~]# wget http://download.redis.io/releases/redis-4.">
+<meta property="og:description" content="————-方法一—————- centos7安装redis单机版（指定目录自己安装）目标软件：本地安装redis，然后使用局域网内任何机器可以访问redis和后台以守护进程运行，设置密码root。 安装gcc编译软件1234567[root@redis_cluster3 ~]# cd /home/soft[root@redis_cluster3 ~]# wget http://download.r">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-12T15:24:37.071Z">
+<meta property="og:updated_time" content="2018-09-29T04:36:23.884Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos7安装redis单机版">
-<meta name="twitter:description" content="centos7安装redis单机版目标软件：本地安装redis，然后使用局域网内任何机器可以访问redis和后台以守护进程运行，设置密码root。 安装gcc编译软件1234567[root@redis_cluster3 ~]# cd /home/soft[root@redis_cluster3 ~]# wget http://download.redis.io/releases/redis-4.">
+<meta name="twitter:description" content="————-方法一—————- centos7安装redis单机版（指定目录自己安装）目标软件：本地安装redis，然后使用局域网内任何机器可以访问redis和后台以守护进程运行，设置密码root。 安装gcc编译软件1234567[root@redis_cluster3 ~]# cd /home/soft[root@redis_cluster3 ~]# wget http://download.r">
 
 
 
@@ -476,7 +476,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  222 字
+                  456 字
                 </span>
               
 
@@ -492,7 +492,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  2 分钟
                 </span>
               
             </div>
@@ -513,11 +513,28 @@
       
 
       
-        <h1 id="centos7安装redis单机版"><a href="#centos7安装redis单机版" class="headerlink" title="centos7安装redis单机版"></a>centos7安装redis单机版</h1><p>目标软件：本地安装redis，然后使用局域网内任何机器可以访问redis和后台以守护进程运行，设置密码root。</p>
+        <p>————-方法一—————-</p>
+<h1 id="centos7安装redis单机版（指定目录自己安装）"><a href="#centos7安装redis单机版（指定目录自己安装）" class="headerlink" title="centos7安装redis单机版（指定目录自己安装）"></a>centos7安装redis单机版（指定目录自己安装）</h1><p>目标软件：本地安装redis，然后使用局域网内任何机器可以访问redis和后台以守护进程运行，设置密码root。</p>
 <h2 id="安装gcc编译软件"><a href="#安装gcc编译软件" class="headerlink" title="安装gcc编译软件"></a>安装gcc编译软件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@redis_cluster3 ~]# cd /home/soft</span><br><span class="line">[root@redis_cluster3 ~]# wget http://download.redis.io/releases/redis-4.0.10.tar.gz</span><br><span class="line">[root@redis_cluster3 ~]# tar xzf redis-4.0.10.tar.gz</span><br><span class="line">[root@redis_cluster3 ~]# mv ./redis-4.0.10 ../work</span><br><span class="line">[root@redis_cluster3 ~]# cd ../work/redis-4.0.10</span><br><span class="line">[root@redis_cluster3 ~]# make</span><br><span class="line">[root@redis_cluster3 ~]# make install</span><br></pre></td></tr></table></figure>
 <h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>配置文件修改：[root@redis_cluster3 ~]# vi redis.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bind 127.0.0.1 192.168.187.7		#使用本地和局域网连接</span><br><span class="line">protected-mode no			        #关闭保护机制，任何ip可以连接</span><br><span class="line">daemonize yes			            #后台守护进程运行</span><br><span class="line">requirepass root			        #设置redis密码</span><br></pre></td></tr></table></figure></p>
 <h2 id="启动redis服务"><a href="#启动redis服务" class="headerlink" title="启动redis服务"></a>启动redis服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@redis_cluster3 redis-4.0.10]# ./src/redis-server redis.conf</span><br></pre></td></tr></table></figure>
 <h2 id="连接服务"><a href="#连接服务" class="headerlink" title="连接服务"></a>连接服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@redis_cluster3 src]# ./redis-cli -h 192.168.187.7 -p 6379 -a &quot;root&quot;</span><br></pre></td></tr></table></figure>
+<p>————方法二———–</p>
+<h1 id="命令自动安装（简单）"><a href="#命令自动安装（简单）" class="headerlink" title="命令自动安装（简单）"></a>命令自动安装（简单）</h1><h2 id="redis安装-（因为官方yum和阿里yum都没有redis的安装包，故只能通过fedora的epel仓库来安装）"><a href="#redis安装-（因为官方yum和阿里yum都没有redis的安装包，故只能通过fedora的epel仓库来安装）" class="headerlink" title="redis安装  （因为官方yum和阿里yum都没有redis的安装包，故只能通过fedora的epel仓库来安装）"></a>redis安装  （因为官方yum和阿里yum都没有redis的安装包，故只能通过fedora的epel仓库来安装）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-openfalcon1 golang]# yum install -y epel-release</span><br></pre></td></tr></table></figure>
+<h2 id="安装redis"><a href="#安装redis" class="headerlink" title="安装redis"></a>安装redis</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-openfalcon1 golang]# yum install redis -y</span><br></pre></td></tr></table></figure>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-openfalcon1 golang]# systemctl start redis</span><br></pre></td></tr></table></figure>
+<h3 id="设置redis开机自启动"><a href="#设置redis开机自启动" class="headerlink" title="设置redis开机自启动"></a>设置redis开机自启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-openfalcon1 golang]# systemctl enable redis</span><br></pre></td></tr></table></figure>
+<h3 id="查看redis开机是否自启动"><a href="#查看redis开机是否自启动" class="headerlink" title="查看redis开机是否自启动"></a>查看redis开机是否自启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-openfalcon1 golang]# systemctl status redis</span><br></pre></td></tr></table></figure>
+<h2 id="修改配置文件，监听所有的IP地址"><a href="#修改配置文件，监听所有的IP地址" class="headerlink" title="修改配置文件，监听所有的IP地址"></a>修改配置文件，监听所有的IP地址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 etc]# vi /etc/redis.conf</span><br></pre></td></tr></table></figure>
+<pre><code>找到下面这一行
+ 使用 /bind 127.0.0.1
+查找 并注释
+#bind 127.0.0.1
+重启生效    
+systemctl restart redis
+</code></pre><h2 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h2><h3 id="yum方式安装的redis配置文件通常在-etc-redis-conf中，打开配置文件找到"><a href="#yum方式安装的redis配置文件通常在-etc-redis-conf中，打开配置文件找到" class="headerlink" title="yum方式安装的redis配置文件通常在/etc/redis.conf中，打开配置文件找到"></a>yum方式安装的redis配置文件通常在/etc/redis.conf中，打开配置文件找到</h3><pre><code>#requirepass foobared 
+</code></pre><h3 id="去掉行前的注释，并修改密码为所需的密码-保存文件"><a href="#去掉行前的注释，并修改密码为所需的密码-保存文件" class="headerlink" title="去掉行前的注释，并修改密码为所需的密码,保存文件"></a>去掉行前的注释，并修改密码为所需的密码,保存文件</h3><pre><code>requirepass 123456
+</code></pre><p><strong>重启redis完成</strong></p>
 
       
     </div>
@@ -601,6 +618,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/13/MySQL单机版安装（yum）/" rel="prev" title="MySQL单机版安装（yum）">
+                MySQL单机版安装（yum） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -712,7 +733,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -808,7 +829,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#centos7安装redis单机版"><span class="nav-number">1.</span> <span class="nav-text">centos7安装redis单机版</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装gcc编译软件"><span class="nav-number">1.1.</span> <span class="nav-text">安装gcc编译软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改配置文件"><span class="nav-number">1.2.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动redis服务"><span class="nav-number">1.3.</span> <span class="nav-text">启动redis服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接服务"><span class="nav-number">1.4.</span> <span class="nav-text">连接服务</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#centos7安装redis单机版（指定目录自己安装）"><span class="nav-number">1.</span> <span class="nav-text">centos7安装redis单机版（指定目录自己安装）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装gcc编译软件"><span class="nav-number">1.1.</span> <span class="nav-text">安装gcc编译软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改配置文件"><span class="nav-number">1.2.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动redis服务"><span class="nav-number">1.3.</span> <span class="nav-text">启动redis服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接服务"><span class="nav-number">1.4.</span> <span class="nav-text">连接服务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令自动安装（简单）"><span class="nav-number">2.</span> <span class="nav-text">命令自动安装（简单）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#redis安装-（因为官方yum和阿里yum都没有redis的安装包，故只能通过fedora的epel仓库来安装）"><span class="nav-number">2.1.</span> <span class="nav-text">redis安装  （因为官方yum和阿里yum都没有redis的安装包，故只能通过fedora的epel仓库来安装）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装redis"><span class="nav-number">2.2.</span> <span class="nav-text">安装redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动"><span class="nav-number">2.2.2.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置redis开机自启动"><span class="nav-number">2.2.3.</span> <span class="nav-text">设置redis开机自启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看redis开机是否自启动"><span class="nav-number">2.2.4.</span> <span class="nav-text">查看redis开机是否自启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改配置文件，监听所有的IP地址"><span class="nav-number">2.3.</span> <span class="nav-text">修改配置文件，监听所有的IP地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改密码"><span class="nav-number">2.4.</span> <span class="nav-text">修改密码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#yum方式安装的redis配置文件通常在-etc-redis-conf中，打开配置文件找到"><span class="nav-number">2.4.1.</span> <span class="nav-text">yum方式安装的redis配置文件通常在/etc/redis.conf中，打开配置文件找到</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去掉行前的注释，并修改密码为所需的密码-保存文件"><span class="nav-number">2.4.2.</span> <span class="nav-text">去掉行前的注释，并修改密码为所需的密码,保存文件</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -845,7 +866,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">37.8k</span>
+    <span title="Site words total count">39.2k</span>
   
 </div>
 -->
@@ -867,7 +888,7 @@ var jiathis_config={
 
 <div class="theme-info">
   <div class="with-love"><i class="fa fa-file-word-o"></i></div>
-  <span class="post-count">博客全站共37.8k字</span>
+  <span class="post-count">博客全站共39.2k字</span>
 </div>
         
 <div class="busuanzi-count">
