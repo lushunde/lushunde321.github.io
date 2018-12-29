@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://github.lushunde.com/"/>
-  <updated>2018-12-29T19:44:39.354Z</updated>
+  <updated>2018-12-29T20:06:41.550Z</updated>
   <id>http://github.lushunde.com/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Centos7安装图形化</title>
+    <link href="http://github.lushunde.com/2018/12/30/centos7%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E5%8C%96/"/>
+    <id>http://github.lushunde.com/2018/12/30/centos7安装图形化/</id>
+    <published>2018-12-29T20:04:31.000Z</published>
+    <updated>2018-12-29T20:06:41.550Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为我装的是最小安装，没有图形界面，所以这里要装x window 图形界面。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># yum check-update</span><br><span class="line"># yum groupinstall &quot;X Window System&quot;</span><br><span class="line"># yum install gnome-classic-session gnome-terminal nautilus-open-terminal control-center liberation-mono-fonts</span><br></pre></td></tr></table></figure></p><p>重启 reboot。<br>登陆系统后执行init 5 到图形界面</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;因为我装的是最小安装，没有图形界面，所以这里要装x window 图形界面。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="centos" scheme="http://github.lushunde.com/categories/centos/"/>
+    
+    
+      <category term="图形化" scheme="http://github.lushunde.com/tags/%E5%9B%BE%E5%BD%A2%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Centos7安装ftpp服务</title>
+    <link href="http://github.lushunde.com/2018/12/30/centos7%E5%AE%89%E8%A3%85ftpp%E6%9C%8D%E5%8A%A1/"/>
+    <id>http://github.lushunde.com/2018/12/30/centos7安装ftpp服务/</id>
+    <published>2018-12-29T19:55:31.000Z</published>
+    <updated>2018-12-29T20:02:52.995Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="安装vsftp"><a href="#安装vsftp" class="headerlink" title="安装vsftp"></a>安装vsftp</h1><h3 id="安装vsftp-1"><a href="#安装vsftp-1" class="headerlink" title="安装vsftp"></a>安装vsftp</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install vsftpd</span><br></pre></td></tr></table></figure><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/vsftpd/vsftpd.conf</span><br></pre></td></tr></table></figure><pre><code>保证下面3项为YESanonymous_enable=YESanon_upload_enable=YESanon_mkdir_write_enable=YES</code></pre><h3 id="设置vsftpd开机启动"><a href="#设置vsftpd开机启动" class="headerlink" title="设置vsftpd开机启动"></a>设置vsftpd开机启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable vsftpd.service</span><br></pre></td></tr></table></figure><h3 id="启动并查看vsftpd服务状态，systemctl启动服务成功不会有任何提示，绿色的active表示服务正在运行"><a href="#启动并查看vsftpd服务状态，systemctl启动服务成功不会有任何提示，绿色的active表示服务正在运行" class="headerlink" title="启动并查看vsftpd服务状态，systemctl启动服务成功不会有任何提示，绿色的active表示服务正在运行"></a>启动并查看vsftpd服务状态，systemctl启动服务成功不会有任何提示，绿色的active表示服务正在运行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start vsftpd.service</span><br><span class="line">systemctl status vsftpd.service</span><br></pre></td></tr></table></figure><h2 id="本地验证ftp是否可以正常访问"><a href="#本地验证ftp是否可以正常访问" class="headerlink" title="本地验证ftp是否可以正常访问"></a>本地验证ftp是否可以正常访问</h2><h3 id="安装ftp"><a href="#安装ftp" class="headerlink" title="安装ftp"></a>安装ftp</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install ftp</span><br></pre></td></tr></table></figure><h3 id="使用anonymous登陆，无需密码"><a href="#使用anonymous登陆，无需密码" class="headerlink" title="使用anonymous登陆，无需密码"></a>使用anonymous登陆，无需密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp localhost</span><br></pre></td></tr></table></figure><p>220表示服务正常，可以登陆；230表示登陆成功。</p><h3 id="查看FTP服务器文件夹信息"><a href="#查看FTP服务器文件夹信息" class="headerlink" title="查看FTP服务器文件夹信息"></a>查看FTP服务器文件夹信息</h3><pre><code>注：</code></pre><p>解决ftp 530 Permission denied问题<br>测试ftp登录时显示 530 Permission denied，原因是需要修改配置文件中的userlist_enable的值改为NO<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/vsftpd/vsftpd.conf</span><br><span class="line">userlist_enable=NO</span><br><span class="line">$ service vsftpd restart</span><br></pre></td></tr></table></figure></p><p>再次测试ftp登录，此时又提示 530 Login incorrect，查了一下 /etc/pam.d/vsftpd 内容，其中一条是<br>auth required pam_listfile.so item=user sense=deny file=/etc/vsftpd/ftpusers onerr=succeed<br>vsftpd将禁止名单指向了/etc/vsftpd/ftpusers，于是vi /etc/vsftpd/ftpusers发现root在名单上，于是删除root并保存，重启 vsftpd。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/vsftpd/ftpusers</span><br><span class="line">$ service vsftpd restart</span><br></pre></td></tr></table></figure></p><p>登录 FTP 成功！</p><h2 id="外部证ftp是否可以正常访问"><a href="#外部证ftp是否可以正常访问" class="headerlink" title="外部证ftp是否可以正常访问"></a>外部证ftp是否可以正常访问</h2><h3 id="关闭防火墙（也可以设置防火墙规则，得再百度了）"><a href="#关闭防火墙（也可以设置防火墙规则，得再百度了）" class="headerlink" title="关闭防火墙（也可以设置防火墙规则，得再百度了）"></a>关闭防火墙（也可以设置防火墙规则，得再百度了）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br></pre></td></tr></table></figure><p>　 为防止机器重启后防火墙服务重新开启，可将防火墙服务永久关闭。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable firewalld.service</span><br></pre></td></tr></table></figure></p><h3 id="在window上输入ftp-IP地址，可看到ftp下的目录（pub为系统预设的）"><a href="#在window上输入ftp-IP地址，可看到ftp下的目录（pub为系统预设的）" class="headerlink" title="在window上输入ftp://IP地址，可看到ftp下的目录（pub为系统预设的）"></a>在window上输入ftp://IP地址，可看到ftp下的目录（pub为系统预设的）</h3><h3 id="文件读写。"><a href="#文件读写。" class="headerlink" title="文件读写。"></a>文件读写。</h3><pre><code>到上面为止，我们发现ftp目录下并不能读写文件，这是由文件夹权限和selinux引起的。</code></pre><h3 id="设置文件夹权限，将pub文件夹的权限设置为777"><a href="#设置文件夹权限，将pub文件夹的权限设置为777" class="headerlink" title="设置文件夹权限，将pub文件夹的权限设置为777"></a>设置文件夹权限，将pub文件夹的权限设置为777</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 -R /var/ftp/pub</span><br></pre></td></tr></table></figure><h3 id="关闭selinux服务"><a href="#关闭selinux服务" class="headerlink" title="关闭selinux服务"></a>关闭selinux服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/selinux/config</span><br></pre></td></tr></table></figure><pre><code>将SELINUX=enforcing改为：SELINUX=disabled</code></pre><h3 id="系统重启，让配置生效"><a href="#系统重启，让配置生效" class="headerlink" title="系统重启，让配置生效"></a>系统重启，让配置生效</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown -r now</span><br></pre></td></tr></table></figure><h3 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h3><h2 id="windows-连接"><a href="#windows-连接" class="headerlink" title="windows 连接"></a>windows 连接</h2><p>FileZilla软件</p><p>至此，ftp完全安装完成，若需为FTP配置用户权限，可自行百度。</p><h1 id="安装-vsftpd"><a href="#安装-vsftpd" class="headerlink" title="安装 vsftpd"></a>安装 vsftpd</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install vsftpd</span><br></pre></td></tr></table></figure><p> 开启ftp服务，要使用ftp必须开启21端口。centos 7使用firewalld代替了原来的iptables。使用下面命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ firewall-cmd --zone=public --add-port=21/tcp --permanent</span><br></pre></td></tr></table></figure></p><p>成功设置显示success，但别忘了重新加载防火墙配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ firewall-cmd --reload</span><br></pre></td></tr></table></figure></p><h3 id="启动-vsftpd"><a href="#启动-vsftpd" class="headerlink" title="启动 vsftpd"></a>启动 vsftpd</h3><p>$ service vsftpd start<br>解决ftp 530 Permission denied问题<br>测试ftp登录时显示 530 Permission denied，原因是需要修改配置文件中的userlist_enable的值改为NO<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/vsftpd/vsftpd.conf</span><br><span class="line">userlist_enable=NO</span><br><span class="line">$ service vsftpd restart</span><br></pre></td></tr></table></figure></p><p>再次测试ftp登录，此时又提示 530 Login incorrect，查了一下 /etc/pam.d/vsftpd 内容，其中一条是<br>auth required pam_listfile.so item=user sense=deny file=/etc/vsftpd/ftpusers onerr=succeed<br>vsftpd将禁止名单指向了/etc/vsftpd/ftpusers，于是vi /etc/vsftpd/ftpusers发现root在名单上，于是删除root并保存，重启 vsftpd。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service vsftpd restart</span><br></pre></td></tr></table></figure></p><p>登录 FTP 成功！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;安装vsftp&quot;&gt;&lt;a href=&quot;#安装vsftp&quot; class=&quot;headerlink&quot; title=&quot;安装vsftp&quot;&gt;&lt;/a&gt;安装vsftp&lt;/h1&gt;&lt;h3 id=&quot;安装vsftp-1&quot;&gt;&lt;a href=&quot;#安装vsftp-1&quot; class=&quot;header
+      
+    
+    </summary>
+    
+      <category term="centos" scheme="http://github.lushunde.com/categories/centos/"/>
+    
+    
+      <category term="ftp" scheme="http://github.lushunde.com/tags/ftp/"/>
+    
+  </entry>
   
   <entry>
     <title>Vmware下如何扩展centos虚拟机磁盘</title>
@@ -303,7 +353,7 @@
     <link href="http://github.lushunde.com/2018/05/21/%E4%B8%87%E7%BD%91%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E5%AE%89%E8%A3%85Discuz-3-4-%E8%AE%BA%E5%9D%9B/"/>
     <id>http://github.lushunde.com/2018/05/21/万网虚拟主机安装Discuz-3-4-论坛/</id>
     <published>2018-05-21T12:36:43.000Z</published>
-    <updated>2018-12-29T19:49:30.913Z</updated>
+    <updated>2018-12-29T20:05:30.034Z</updated>
     
     <content type="html"><![CDATA[<h1 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h1><h2 id="万网免费虚拟主机"><a href="#万网免费虚拟主机" class="headerlink" title="万网免费虚拟主机"></a>万网免费虚拟主机</h2><p>万网虚机 php版本：5.2<br>MySql版本：位置<br>硬盘空间：200M<br>数据库：20M<br>绑定域名：lushunde.com 已备案和绑定</p><h1 id="登录万网"><a href="#登录万网" class="headerlink" title="登录万网"></a>登录万网</h1><h2 id="上传Discuz源码"><a href="#上传Discuz源码" class="headerlink" title="上传Discuz源码"></a>上传Discuz源码</h2><p>使用windows文件栏 /ftp://qxu1146270247.my3w.com/htdocs/bbs/ 并解压</p><p>输入 域名<a href="http://lushunde.com/bbs/" target="_blank" rel="noopener">http://lushunde.com/bbs/</a> 进入安装</p><h1 id="万网虚拟主机绑定多个子域名方法"><a href="#万网虚拟主机绑定多个子域名方法" class="headerlink" title="万网虚拟主机绑定多个子域名方法"></a>万网虚拟主机绑定多个子域名方法</h1><p>利用.htaccess绑定域名到子目录,前提你的空间服务器必须支持apache的rewrite功能，只有这样才能使用.htaccess。如果你的空间是Linux服务器 一般默认都开启了的。</p><h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><p>登陆域名管理台（如DNSPod） 把需要绑定的域名 解析到你的空间；<br>登陆虚拟主机/空间管理台（如万网） 绑定域名到空间;</p><p>首先在本地建个txt文件，复制下面的代码修改替换你要绑的域名和目录，并传到网站主目录下再改成为.htaccess。<br><strong>下面是以 music.xmgho.com 绑定到子目录bbs为例的.htaccess代码.</strong></p><p><ifmodule mod_rewrite.c=""><br>RewriteEngine On<br>RewriteBase /</ifmodule></p><h1 id="绑定music-xmgho-com-到子目录music"><a href="#绑定music-xmgho-com-到子目录music" class="headerlink" title="绑定music.xmgho.com 到子目录music"></a>绑定music.xmgho.com 到子目录music</h1><p>RewriteCond %{HTTP_HOST} ^music.xmgho.com$ [NC]<br>RewriteCond %{REQUEST_URI} !^/music/<br>RewriteRule ^(.*)$ music/$1?Rewrite [L,QSA]</p><p>#可以绑定多个 只需重复上三行代码并更改一下域名、目录名 就好了<br><br>如果你以完成上面的步骤<br>你的子域名应该可以访问了 但你会发现在浏览器上访问 主域名+绑定的域名目录 也可以访问，可这并不是我们想要的 接下来我们完成最后一步;在每一个绑定的目录中 如music目录中 也增加一个 .htaccess 文件<br>.htaccess代码如下：<br> <ifmodule mod_rewrite.c=""><br>RewriteEngine On<br>RewriteBase /</ifmodule></p><p>#只许绑定的域名访问<br>RewriteCond %{HTTP_HOST} !^music.xmgho.com$ [NC]<br>RewriteRule (.*) <a href="http://music.xmgho.com/$1" target="_blank" rel="noopener">http://music.xmgho.com/$1</a> [L,R=301]</p><p>#对绑定目录下与 同名的目录的处理<br>RewriteCond %{REQUEST_URI} ^\/music\/ [NC]<br>RewriteCond %{QUERY_STRING} !^(.<em>)?Rewrite<br>RewriteRule ^(.</em>)$ /%{REQUEST_URI}/%{REQUEST_URI}/$1?Rewrite [L,QSA]<br><br>完成以上步骤，你会惊喜发现已经达到你想要效果了。</p>]]></content>
     
@@ -316,7 +366,7 @@
     
     </summary>
     
-      <category term="Discuz" scheme="http://github.lushunde.com/categories/Discuz/"/>
+      <category term="centos" scheme="http://github.lushunde.com/categories/centos/"/>
     
     
       <category term="Discuz" scheme="http://github.lushunde.com/tags/Discuz/"/>
@@ -437,56 +487,6 @@
       
       
         &lt;h2 id=&quot;systemctl&quot;&gt;&lt;a href=&quot;#systemctl&quot; class=&quot;headerlink&quot; title=&quot;systemctl&quot;&gt;&lt;/a&gt;systemctl&lt;/h2&gt;&lt;p&gt;systemctl是CentOS7的服务管理工具中主要的工具，它融合之前servic
-      
-    
-    </summary>
-    
-      <category term="linux" scheme="http://github.lushunde.com/categories/linux/"/>
-    
-    
-      <category term="centos7.4" scheme="http://github.lushunde.com/tags/centos7-4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Centos1708防火墙管理</title>
-    <link href="http://github.lushunde.com/2018/03/18/Centos1708%E9%98%B2%E7%81%AB%E5%A2%99%E7%AE%A1%E7%90%86/"/>
-    <id>http://github.lushunde.com/2018/03/18/Centos1708防火墙管理/</id>
-    <published>2018-03-18T14:43:00.000Z</published>
-    <updated>2018-03-18T15:06:08.043Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="1-firewall服务常用命令"><a href="#1-firewall服务常用命令" class="headerlink" title="1.firewall服务常用命令"></a>1.firewall服务常用命令</h2><h3 id="1-1-查看firewall服务状态"><a href="#1-1-查看firewall服务状态" class="headerlink" title="1.1 查看firewall服务状态"></a>1.1 查看firewall服务状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# systemctl status firewalld.service</span><br></pre></td></tr></table></figure><h3 id="1-2-启动firewall服务"><a href="#1-2-启动firewall服务" class="headerlink" title="1.2 启动firewall服务"></a>1.2 启动firewall服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# systemctl start firewalld.service</span><br></pre></td></tr></table></figure><h3 id="1-3-关闭firewall服务"><a href="#1-3-关闭firewall服务" class="headerlink" title="1.3 关闭firewall服务"></a>1.3 关闭firewall服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# systemctl stop firewalld.service</span><br></pre></td></tr></table></figure><h3 id="1-4-禁止firewall服务开机启动"><a href="#1-4-禁止firewall服务开机启动" class="headerlink" title="1.4 禁止firewall服务开机启动"></a>1.4 禁止firewall服务开机启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# systemctl disable firewalld.service</span><br></pre></td></tr></table></figure><h2 id="2-firewall的常用命令"><a href="#2-firewall的常用命令" class="headerlink" title="2.firewall的常用命令"></a>2.firewall的常用命令</h2><h3 id="2-1-查看firewall的状态"><a href="#2-1-查看firewall的状态" class="headerlink" title="2.1 查看firewall的状态"></a>2.1 查看firewall的状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# firewall-cmd --state</span><br></pre></td></tr></table></figure><h3 id="2-2-查看防火墙规则"><a href="#2-2-查看防火墙规则" class="headerlink" title="2.2 查看防火墙规则"></a>2.2 查看防火墙规则</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# firewall-cmd --list-all</span><br></pre></td></tr></table></figure><h3 id="2-3-查看版本"><a href="#2-3-查看版本" class="headerlink" title="2.3 查看版本"></a>2.3 查看版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# firewall-cmd --version</span><br></pre></td></tr></table></figure><h3 id="2-4-查看所有开放端口"><a href="#2-4-查看所有开放端口" class="headerlink" title="2.4 查看所有开放端口"></a>2.4 查看所有开放端口</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# firewall-cmd --zone=public --list-ports</span><br></pre></td></tr></table></figure><h3 id="2-5-更新防火墙规则"><a href="#2-5-更新防火墙规则" class="headerlink" title="2.5 更新防火墙规则"></a>2.5 更新防火墙规则</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# firewall-cmd --reload</span><br></pre></td></tr></table></figure><h3 id="2-6-查看区域信息"><a href="#2-6-查看区域信息" class="headerlink" title="2.6 查看区域信息"></a>2.6 查看区域信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# firewall-cmd --get-active-zones</span><br></pre></td></tr></table></figure><h3 id="2-7查看指定所属区域"><a href="#2-7查看指定所属区域" class="headerlink" title="2.7查看指定所属区域"></a>2.7查看指定所属区域</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# firewall-cmd --get-zone-of-interface=ens33</span><br></pre></td></tr></table></figure><h3 id="2-8-拒绝所有数据包-包括ssh连接等"><a href="#2-8-拒绝所有数据包-包括ssh连接等" class="headerlink" title="2.8 拒绝所有数据包 [包括ssh连接等]"></a>2.8 拒绝所有数据包 [包括ssh连接等]</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# firewall-cmd --panic-on</span><br></pre></td></tr></table></figure><h3 id="2-9-取消拒绝所有数据包"><a href="#2-9-取消拒绝所有数据包" class="headerlink" title="2.9 取消拒绝所有数据包"></a>2.9 取消拒绝所有数据包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 ~]# firewall-cmd --panic-off</span><br></pre></td></tr></table></figure><h3 id="2-10-查看是否拒绝数据包"><a href="#2-10-查看是否拒绝数据包" class="headerlink" title="2.10 查看是否拒绝数据包"></a>2.10 查看是否拒绝数据包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 ~]# firewall-cmd --query-panic</span><br></pre></td></tr></table></figure><h2 id="3-添加开放端口-命令行模式"><a href="#3-添加开放端口-命令行模式" class="headerlink" title="3.添加开放端口 命令行模式"></a>3.添加开放端口 命令行模式</h2><h3 id="3-1-添加一个端口"><a href="#3-1-添加一个端口" class="headerlink" title="3.1 添加一个端口"></a>3.1 添加一个端口</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 ~]# firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br></pre></td></tr></table></figure><pre><code>permanent：永久生效，没有此参数重启后失效</code></pre><h3 id="3-2-重载后生效"><a href="#3-2-重载后生效" class="headerlink" title="3.2 重载后生效"></a>3.2 重载后生效</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 ~]# firewall-cmd --reload</span><br></pre></td></tr></table></figure><h3 id="3-3-查看端口"><a href="#3-3-查看端口" class="headerlink" title="3.3 查看端口"></a>3.3 查看端口</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# firewall-cmd --zone=public --query-port=80/tcp</span><br></pre></td></tr></table></figure><h3 id="3-4-删除端口"><a href="#3-4-删除端口" class="headerlink" title="3.4 删除端口"></a>3.4 删除端口</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CENTOS7-TEST1 /]# firewall-cmd --zone=public --remove-port=80/tcp --permanent</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;1-firewall服务常用命令&quot;&gt;&lt;a href=&quot;#1-firewall服务常用命令&quot; class=&quot;headerlink&quot; title=&quot;1.firewall服务常用命令&quot;&gt;&lt;/a&gt;1.firewall服务常用命令&lt;/h2&gt;&lt;h3 id=&quot;1-1-查看fir
-      
-    
-    </summary>
-    
-      <category term="linux" scheme="http://github.lushunde.com/categories/linux/"/>
-    
-    
-      <category term="centos7.4" scheme="http://github.lushunde.com/tags/centos7-4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Centos1708更新系统yum源</title>
-    <link href="http://github.lushunde.com/2018/03/18/Centos1708%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9Fyum%E6%BA%90/"/>
-    <id>http://github.lushunde.com/2018/03/18/Centos1708更新系统yum源/</id>
-    <published>2018-03-18T14:42:37.000Z</published>
-    <updated>2018-03-18T14:59:12.754Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="安装wget软件"><a href="#安装wget软件" class="headerlink" title="安装wget软件"></a>安装wget软件</h2><p>先后安装以下三个命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost network-scripts]# yum -y install wget</span><br><span class="line">[root@localhost network-scripts]# yum -y install setup</span><br><span class="line">[root@localhost network-scripts]# yum -y install perl</span><br></pre></td></tr></table></figure></p><h2 id="在CentOS-7下更改yum源与更新系统"><a href="#在CentOS-7下更改yum源与更新系统" class="headerlink" title="在CentOS 7下更改yum源与更新系统"></a>在CentOS 7下更改yum源与更新系统</h2><h3 id="1-1-首先备份-etc-yum-repos-d-CentOS-Base-repo"><a href="#1-1-首先备份-etc-yum-repos-d-CentOS-Base-repo" class="headerlink" title="1.1 首先备份/etc/yum.repos.d/CentOS-Base.repo"></a>1.1 首先备份/etc/yum.repos.d/CentOS-Base.repo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost network-scripts]# cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br></pre></td></tr></table></figure><h3 id="1-2-进入yum源配置文件所在文件夹"><a href="#1-2-进入yum源配置文件所在文件夹" class="headerlink" title="1.2 进入yum源配置文件所在文件夹"></a>1.2 进入yum源配置文件所在文件夹</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost network-scripts]# cd /etc/yum.repos.d/</span><br></pre></td></tr></table></figure><h3 id="1-3-下载163的yum源配置文件，放入-etc-yum-repos-d-操作前请做好相应备份"><a href="#1-3-下载163的yum源配置文件，放入-etc-yum-repos-d-操作前请做好相应备份" class="headerlink" title="1.3 下载163的yum源配置文件，放入/etc/yum.repos.d/(操作前请做好相应备份)"></a>1.3 下载163的yum源配置文件，放入/etc/yum.repos.d/(操作前请做好相应备份)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost yum.repos.d]# wget http://mirrors.163.com/.help/CentOS7-Base-163.repo</span><br></pre></td></tr></table></figure><h3 id="1-4-运行yum-makecache生成缓存"><a href="#1-4-运行yum-makecache生成缓存" class="headerlink" title="1.4 运行yum makecache生成缓存"></a>1.4 运行yum makecache生成缓存</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost yum.repos.d]# yum makecache</span><br></pre></td></tr></table></figure><h3 id="1-5-更新系统-时间比较久-主要看个人网速"><a href="#1-5-更新系统-时间比较久-主要看个人网速" class="headerlink" title="1.5 更新系统(时间比较久,主要看个人网速)"></a>1.5 更新系统(时间比较久,主要看个人网速)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost yum.repos.d]# yum -y update</span><br></pre></td></tr></table></figure><h3 id="1-6-安装vim编辑器"><a href="#1-6-安装vim编辑器" class="headerlink" title="1.6 安装vim编辑器"></a>1.6 安装vim编辑器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost yum.repos.d]# yum -y install vim*</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;安装wget软件&quot;&gt;&lt;a href=&quot;#安装wget软件&quot; class=&quot;headerlink&quot; title=&quot;安装wget软件&quot;&gt;&lt;/a&gt;安装wget软件&lt;/h2&gt;&lt;p&gt;先后安装以下三个命令&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;
       
     
     </summary>
