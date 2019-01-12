@@ -3,6 +3,141 @@
   
     
     <entry>
+      <title><![CDATA[Linux常用命令总结]]></title>
+      <url>/2019/01/12/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</url>
+      <content type="html"><![CDATA[<h2 id="列表项"><a href="#列表项" class="headerlink" title="列表项"></a>列表项</h2><ul>
+<li>ls命令 </li>
+<li>cd-命令</li>
+<li>cp-复制命令 </li>
+<li>mv-移动更改命令  </li>
+<li>rm-删除命令   </li>
+<li>cat-查看命令 </li>
+<li>rcp-拷贝命令   </li>
+<li>pwd 显示当前目录</li>
+<li>mkdir  创建一个目录</li>
+<li>rmdir  删除一个空目录</li>
+<li>rm     删除文件</li>
+<li>touch  创建一个空文件</li>
+</ul>
+<h3 id="建立新目录"><a href="#建立新目录" class="headerlink" title="建立新目录"></a>建立新目录</h3><p>执行格式： mkdir name<br>Exmaple ：<br><strong>mkdir dir1 dir2</strong>   并列建立新目录 dir1和dir2。<br><strong>mkdir -p dir3/dir4</strong>   表示当前目录下创建/dir3/dir4包含子文件夹的文件夹（-p 能力）<br>mkdir 目录名         =&gt; 创建一个目录</p>
+<h3 id="删除目录"><a href="#删除目录" class="headerlink" title="删除目录"></a>删除目录</h3><p>执行格式： rmdir directory-name 或 rm -r directory-name<br>Example ：<br>rmdir dir1 删除目录 dir1，但 dir1 下必须没有文件存在，否则无法删除。<br>rm -r dir1 删除目录 dir1，及其下所有文件及子目录。<br>rm file1 删除文件名为 file1 之文件。<br>rm file? 删除文件名中有五个字符，前四个字符为file 之所有文件。<br>rm f* 删除文件名中，以 f 为字首之所有文件。<br>rm -rf file 删除名为file的文件夹及其里面的内容<br>rm -i dir1 删除目录 dir1    （-i）给出提示</p>
+<h3 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h3><p>touch 文件名        =&gt; 创建一个空文件</p>
+<h3 id="移动或更改文件、目录名称"><a href="#移动或更改文件、目录名称" class="headerlink" title="移动或更改文件、目录名称"></a>移动或更改文件、目录名称</h3><p>执行格式： mv source destination<br>Example:<br><strong>mv file1 file2</strong> 将文件 file1，更改文件名为 file2。<br>mv file3 file4 (档文件夹下已经有file4) 没有提示  file3文件改名并替换file4文件    没有提示<br>mv -i  file3 file4 (档文件夹下已经有file4) 会有提示是否覆盖  file3文件改名并替换file4文件<br>mv -b  file3 file4 (档文件夹下已经有file4) 会有提示是否覆盖  file3文件改名file4~文件 并与原来file4文件共存<br><strong>mv file1 dir1</strong> 将文件 file1，移到目录 dir1下，文件名仍为 file1。<br>mv dir1 dir2 若目录 dir2 存在，则将目录 dir1，及其所有文件和子目录，移到目录 dir2 下，新目录名称为 dir1。若目录 dir2 不存在，则将dir1，及其所有文件和子目录，更改为目录 dir2。</p>
+<h3 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h3><p>执行格式: cp [-r] source destination<br>Example:<br>cp file1 file2 将文件 file1 复制到 file2 ，file2内容改变。<br>cp file1 dir1 将文件 file1 复制到目录 dir1 下，文件名仍为 file1。<br>cp /tmp/file1 file1 将目录 /tmp 下的文件 file1 复制到现行目录下，文件名仍为 file1。<br><strong>cp /tmp/file1 file2</strong> 将目录 /tmp 下的文件 file1 复制到现行目录下，文件名为 file2</p>
+<p>参数<br>   <strong>cp -i file1 file2</strong> 当file2文件存在时会提示是否覆盖源文件<br>   cp -b file1 /home 当/home文件夹中存在一个file1文件名，则会临时创建一个file1~的文件<br>   cp -r dir1 dir2 (recursive copy) 复制整个目录。若目录 dir2存在，则将目录 dir1，及其所有文件和子目录，复制到目录 dir2 下，新目录名称为 dir1。若目录 dir2 不存在，则将dir1，及其所有文件和子目录，复制为目录 dir2。</p>
+<h3 id="文件或目录的基本组成："><a href="#文件或目录的基本组成：" class="headerlink" title="文件或目录的基本组成："></a>文件或目录的基本组成：</h3><p>-rw-r–r–    1    root    root     140      4月19  2012       .profile<br>[  权限 ] [ 链接][所有者][用户组][文件容量][    时间       ] [     文件    ] </p>
+<p> 权限10位字母含义：（r-可读、w-可写、x-可执行）<br>    d                   rwx           r-x                 r-x</p>
+<pre><code>-                   rw-           r--                 r--
+</code></pre><p>[d-目录]           [所有者权限]   [同用户组权限]    [其他用户组权限]<br>[–文件]<br>[|-链接文件]<br>[b-可供存储的接口设备]<br>[c-串行接口设备]</p>
+<h3 id="chgrp命令-chown-命令-chmod命令"><a href="#chgrp命令-chown-命令-chmod命令" class="headerlink" title="chgrp命令         chown 命令             chmod命令"></a>chgrp命令         chown 命令             chmod命令</h3><h4 id="chgrp命令"><a href="#chgrp命令" class="headerlink" title="chgrp命令"></a>chgrp命令</h4><p>功能：改变文件或目录所属的组。<br>语法：chgrp [选项] group filename?<br>该命令改变指定指定文件所属的用户组。其中group可以是用户组ID，也可以是/etc/group文件中用户组的组名。文件名是以空格分开的要改变属组的文件列表，支持通配符。如果用户不是该文件的属主或超级用户，则不能改变该文件的组。<br>参数： </p>
+<ul>
+<li>R 递归式地改变指定目录及其下的所有子目录和文件的属组。<br>例1：$ chgrp - R book /opt/local /book<br>改变/opt/local /book/及其子目录下的所有文件的属组为book。 </li>
+</ul>
+<h4 id="chown-命令"><a href="#chown-命令" class="headerlink" title="chown 命令"></a>chown 命令</h4><p>功能：更改某个文件或目录的属主和属组。这个命令也很常用。例如root用户把自己的一个文件拷贝给用户xu，为了让用户xu能够存取这个文件，root用户应该把这个文件的属主设为xu，否则，用户xu无法存取这个文件。<br>语法：chown [选项] 用户或组 文件<br>说明：chown将指定文件的拥有者改为指定的用户或组。用户可以是用户名或用户ID。组可以是组名或组ID。文件是以空格分开的要改变权限的文件列表，支持通配符。<br>参数： </p>
+<ul>
+<li>R 递归式地改变指定目录及其下的所有子目录和文件的拥有者。 </li>
+<li>v 显示chown命令所做的工作。<br>例1：把文件shiyan.c的所有者改为wang。<br>$ chown wang shiyan.c<br>例2：把目录/his及其下的所有文件和子目录的属主改成wang，属组改成users。<br>$ chown - R wang.users /his</li>
+</ul>
+<h4 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h4><p><strong>数字类型</strong><br>chmod xxx 文件名（为要设置的值）<br>r:4  +w:2  +e:1  =[0~7]<br>sudo chmod 600 ××× （只有所有者有读和写的权限）<br>sudo chmod 644 ××× （所有者有读和写的权限，组用户只有读的权限）<br>sudo chmod 700 ××× （只有所有者有读和写以及执行的权限）<br>sudo chmod 666 ××× （每个人都有读和写的权限）<br>sudo chmod 777 ××× （每个人都有读和写以及执行的权限）</p>
+<p>其中×××指文件名（也可以是文件夹名，不过要在chmod后加-ld）。</p>
+<p><strong>符号型</strong><br> 首字母代表<br>    u (user)   g (gropu)  o (others)      a （所有组）<br>   （1）  chmod u=rwx,go=rx 文件名<br>          [            +（加入）         -（除去）              =（设置）        ]<br>   （2）  chmod a+w  文件名<br>               chmod u+x,g-w 文件名</p>
+<p>目录与文件权限的意义<br>        如果是 对用户设定该目录 drw-rwxr–  ，则表示只可以看此文件夹信息，并不能cd 到文件夹里看里面的文件。</p>
+<p>7种文件类型</p>
+<ul>
+<li>普通文件                 s   本地接口<br>d   目录（文件夹）           p   有名管道<br>c   字符设备文件             |   符号链接<br>b   块设备文件</li>
+</ul>
+<p>ln命令 建立连接              相当于win7中创建快捷方式<br>    ln -s file1 newfile     </p>
+<h3 id="gt-gt-输出重定向（两个区别）"><a href="#gt-gt-输出重定向（两个区别）" class="headerlink" title="&gt;&gt;输出重定向（两个区别）"></a>&gt;&gt;输出重定向（两个区别）</h3><p>将输出的信息不显示在显示器上，而是定向到指定地点<br>例如 ls &gt; /home/text1/lsout  表示ls命令应该在显示器上显示的文件夹信息通过（&gt;输出重定向）保存到/home/text1/目录下的lsout文件中。若lsout文件已存在，系统则替换为当前的内容。<br> ls 》 /home/text1/lsout 重定向的内容不会覆盖原文件中内容，保留原内容并在文件末尾添加重定向新内容。</p>
+<p>[&lt; 立即输出]   [&lt;&lt; 一次性输出]  输入重定向  不常用<br>     cat &lt; file1   将file1内容定向输出给cat<br>    当 cat 时，即时显示<br>    当 cat&lt;&lt; EOF 时，则可以输入多行，知道输入 EOF时系统才会江泉边所有输入一并显示出来。  EOF 自己可以随意改变。</p>
+<h3 id="ls-grep-xy"><a href="#ls-grep-xy" class="headerlink" title="ls | grep xy"></a>ls | grep xy</h3><p>表示 筛选 ls显示出来的含有xy信息的文档或文件 然后输出。</p>
+<h3 id="查看服务进程：ps-aux-q退出查看"><a href="#查看服务进程：ps-aux-q退出查看" class="headerlink" title="查看服务进程：ps aux [q退出查看]"></a>查看服务进程：ps aux [q退出查看]</h3><h3 id="查看服务cpu利用：top"><a href="#查看服务cpu利用：top" class="headerlink" title="查看服务cpu利用：top"></a>查看服务cpu利用：top</h3><h3 id="查看服务对应端口：netstat-nlp"><a href="#查看服务对应端口：netstat-nlp" class="headerlink" title="查看服务对应端口：netstat -nlp"></a>查看服务对应端口：netstat -nlp</h3>]]></content>
+      
+        <categories>
+            
+            <category> linux </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 基础命令 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[React基本介绍]]></title>
+      <url>/2019/01/12/Reactt%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/</url>
+      <content type="html"><![CDATA[<h2 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h2><pre><code>默认jsavscript 定义的var 变量是全局变量 
+let ：块级作用于    定义的变量只在改作用域中有效   
+const：定义常量  ；一点定义不可改变，引用的变量可以改变引用变量属性的值。
+常用的箭头函数：  (a,b) =&gt; { return a+b; } 格式：（参数1，参数2 ...) =&gt; { 函数逻辑体 }
+...args  表示一个数组，常用于传入数组参数
+★ 字符串拼接  使用``包含所有字符串，变量使用${ var } 获取   例如 let name = &apos;zhangsan&apos;;  console.log(`my name is ${name}`);
+export 导出，将函数公开到模块，其他人可以引用
+import 导入，将别人写的模块加载到并引用
+</code></pre><h2 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h2><pre><code>安装  npm install babel-cli -g
+配置  .babelrc 文件，
+预设prest[主要是将ES6转变为ES5]   npm install --save-dev babel-preasct-es2015
+插件pluagle[主要是]
+</code></pre><h2 id="前端组件化"><a href="#前端组件化" class="headerlink" title="前端组件化"></a>前端组件化</h2><p><strong>webpack：单入口组件</strong><br>    原理：定义一个index.js作为入口，然后其他引用都在这个里面定义引用，对与html只需要引入这一个文件。<br>    安装：npm install lodash<br>    npm查看全局安装位置命令：npm prefix -g<br>    配置文件：package.json<br>    –save 保存安装到生产环境<br>    –dev 保存插件安装到开发环境中<br>    一般安装使用 npm install react –save-dev<br>    通过package.json 配置反反向安装所有应用使用的命令 ： npm install 带cmd 目录要有package.json文件</p>
+<p><strong>Gulpss 任务流工具</strong><br>    安装：npm install -g gulp-cli<br>    配置文件：gulpfile.js</p>
+<p><strong>webpack模块打包工具</strong><br>    代码拆分：通常我们将所有js文件打包成一个index.js 。这个功能就是 将项目中js 根据不同功能打包成几个js文件，用到时在加载。减轻初始页面加载文件大小过大<br>    静态分析：支持正则表达式 和 简单的变量<br>    模块热替换： webpack –dev-server –hot<br>    配置文件：entry、output、module<br>    entry：定义项目入口文件<br>    output： path、filename、publicpath<br>    path：输出的目录位置<br>    filename：输出文件名称<br>    publicpath：公共路径，指的是 输出路径对应的外部路径。 例如<a href="http://www/lushunde.com/index.html" target="_blank" rel="noopener">http://www/lushunde.com/index.html</a> 对应外部路径是<a href="http://lushunde.com/" target="_blank" rel="noopener">http://lushunde.com/</a><br>    module：loaders、plugin<br>    loaders ：定义转换方式<br>    pulgin：html-webpack-paugin   生成一个几乎为空的html页面为文件<br>实时构建： watch   监视代码改动则更新页面功能。</p>
+<h2 id="react介绍"><a href="#react介绍" class="headerlink" title="react介绍"></a>react介绍</h2><pre><code>1.组件：一切基于组件。定义组件，想引用 普通html标签一样引用。
+2.jsx：一种支持html与js混写的
+3.virtual DOM：使用javasctipt创建类似于Dom树一样的对象，然后通过diff算法算出变更的节点，通过patch方法仅更新改变的真实DOM。
+性能：通过javacript对象的diff算法换取频繁操作真实DOM的巨大开销。
+</code></pre><h2 id="JSX：语法"><a href="#JSX：语法" class="headerlink" title="JSX：语法"></a>JSX：语法</h2><pre><code>1.html标签第一个字母小写
+2.定义的组件 第一个字母大写
+3.javascript 中保留或者关键字 替换写法：例如 class =》className
+4.省略属性值时，默认为true 。例如 有属性display ，默认为true
+5.注释 使用｛/* 注释的内容 */｝
+6.属性扩散  使用｛...props｝
+7.编译
+</code></pre><h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><h3 id="初始化："><a href="#初始化：" class="headerlink" title="初始化："></a>初始化：</h3><pre><code>1.getDefultProps  初始化调用一次，设置this.props属性  基本不用管理
+2.getInitialState 初始化调用一次，设置this.state属性  在ES6中已经被constructor 替代，直接在constructor 中设置初始state属性值
+3.componentWillMount  初始化在render之前执行一次      此时没有dom节点，只能设置一些渲染数据处理
+4.render （必须方法）初始化执行，不应该有修改state或者交互方法，渲染数据，返回reactElement
+5.componentDidMount  初始化render在之后执行一次  此时可以获取dom节点，长用于获取dom节点或者ajax等操作
+</code></pre><h3 id="组件props更新"><a href="#组件props更新" class="headerlink" title="组件props更新"></a>组件props更新</h3><pre><code>1.conponentWillReceiveProps（object nextprops） 接受新的props，长与this.props 比较，然后设置this.state 来跟新render
+2.shountComentUpdate 返回true ，执行之后的操作；返回false，中断操作。默认返回true
+3.compomentWillUpload 在render之前执行
+4.render
+5.componentDidUpdate 在render之后执行
+</code></pre><h3 id="组件卸载"><a href="#组件卸载" class="headerlink" title="组件卸载"></a>组件卸载</h3><pre><code>componentWillUnmount  卸载组件之前调用
+</code></pre><h3 id="无状态函数组件"><a href="#无状态函数组件" class="headerlink" title="无状态函数组件"></a>无状态函数组件</h3><pre><code>没有内部的state，不需要生命周期。只是渲染props的数据
+</code></pre><h3 id="state设计原则"><a href="#state设计原则" class="headerlink" title="state设计原则"></a>state设计原则</h3><pre><code>1.尽量使用轻量级的json格式定义
+2.能在render中计算出来的值就不要定义在state中
+</code></pre><h3 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h3><pre><code>1.在需要获取dom的节点元素上使用 ref 标记 例如 ref=&apos;age&apos;
+2.在方法上使用 this.refs.age 获取指定的dom节点
+</code></pre><h3 id="Viryrul-Dom"><a href="#Viryrul-Dom" class="headerlink" title="Viryrul Dom"></a>Viryrul Dom</h3><pre><code>实质：使用javascript.createElement 创建出一个类似于 dom树的 对象 
+      使用ReactDom的render方法将 虚拟dom 插入到真实的dom中去
+整体流程：
+    1.构建Virtual Dom树结构
+    2.将Virtual Dom插入到真实的
+    3.变化后生成新的Virtual Dom树
+    4.通过diff算法算出来两棵树的不同
+    5.更新变更的dom节点
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> react </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> react </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Centos7安装图形化]]></title>
       <url>/2018/12/30/centos7%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E5%8C%96/</url>
       <content type="html"><![CDATA[<p>因为我装的是最小安装，没有图形界面，所以这里要装x window 图形界面。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># yum check-update</span><br><span class="line"># yum groupinstall &quot;X Window System&quot;</span><br><span class="line"># yum install gnome-classic-session gnome-terminal nautilus-open-terminal control-center liberation-mono-fonts</span><br></pre></td></tr></table></figure></p>
